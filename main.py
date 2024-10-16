@@ -125,5 +125,46 @@ def analyze_image_endpoint():
     
     return jsonify({"message": f"Analysis complete. Results saved to {filename}", "html_content": extracted_content})
 
+@app.route('/translate_html', methods=['POST'])
+def translate_html_endpoint():
+    if 'html_file' not in request.files:
+        return jsonify({"error": "No HTML file provided"}), 400
+    
+    html_file = request.files['html_file']
+    if html_file.filename == '':
+        return jsonify({"error": "No selected HTML file"}), 400
+    
+    target_language = request.form.get('target_language', 'tr')
+    output_folder = request.form.get('output_folder', '')
+    
+    if not output_folder:
+        return jsonify({"error": "No output folder provided"}), 400
+    
+    # Read the contents of the HTML file
+    html_content = html_file.read().decode('utf-8')
+    
+    # Translate the HTML content using OpenAI Chat Completions
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {
+                "role": "user",
+                "content": f"Translate the following HTML content from English to {target_language.upper()}:\n\n{html_content}"
+            }
+        ]
+    )
+    
+    translated_content = response.choices[0].message.content
+    result=extract_html_content(translated_content)
+    
+    # Save the translated HTML content to a file
+    os.makedirs(output_folder, exist_ok=True)
+    output_file = os.path.join(output_folder, f'{target_language}.html')
+    
+    with open(output_file, 'w', encoding='utf-8') as f:
+        f.write(result)
+    
+    return jsonify({"message": f"Translation complete. Output saved to {output_file}"})
+
 if __name__ == '__main__':
     app.run(debug=True)
