@@ -1,0 +1,132 @@
+{
+	"info": {
+		"_postman_id": "3445859f-f613-47ca-9ba5-124e6625a2f9",
+		"name": "Doc Generator",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20187864"
+	},
+	"item": [
+		{
+			"name": "analyze_image",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/K1/projects/zuzzuu_app/docs/New Docs/13Fusion Reactor/01Data Design/Screenshot 2024-10-15 192610.png"
+						},
+						{
+							"key": "output_folder",
+							"value": "C:\\K1\\projects\\zuzzuu_app\\docs\\New Docs\\13Fusion Reactor\\01Data Design",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/analyze_image",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"analyze_image"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST http://localhost:5000/analyze_image \\\r\n  -H \"Content-Type: multipart/form-data\" \\\r\n  -F \"image=@/path/to/your/image.jpg\" \\\r\n  -F \"output_folder=/path/to/output/folder\""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5000/translate_html",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "html_file",
+							"type": "file",
+							"src": "/C:/K1/projects/zuzzuu_app/docs/New Docs/19Settings/05Integration/en.html"
+						},
+						{
+							"key": "target_language",
+							"value": "tr",
+							"type": "text"
+						},
+						{
+							"key": "output_folder",
+							"value": "C:\\K1\\projects\\zuzzuu_app\\docs\\New Docs\\19Settings\\05Integration",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/translate_html",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"translate_html"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST \\\r\n  http://localhost:5000/translate_html \\\r\n  -H 'Content-Type: multipart/form-data' \\\r\n  -F 'html_file=@/path/to/your/file.html' \\\r\n  -F 'target_language=tr'"
+			},
+			"response": []
+		},
+		{
+			"name": "Get all doc files",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/files",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"files"
+					]
+				},
+				"description": "Generated from cURL: curl -X GET \\\r\n  'http://localhost:5000/search?q=your_search_query'"
+			},
+			"response": []
+		},
+		{
+			"name": "Search Htmls",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/search?q=your_search_query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "your_search_query"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -X GET \\\r\n  'http://localhost:5000/search?q=your_search_query'"
+			},
+			"response": []
+		}
+	]
+}
