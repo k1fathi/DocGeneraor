@@ -1,0 +1,112 @@
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seviyeler Arayüzü için Kullanıcı Kılavuzu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; 
+            background-color: #f9f9f9; 
+            margin: 0; 
+            padding: 20px;
+        }
+        .container {
+            width: 80%; 
+            margin: auto; 
+            background: #ffffff; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none; 
+            padding: 0;
+        }
+        li {
+            background: #eaeaea; 
+            margin: 5px 0; 
+            padding: 10px; 
+            border-radius: 4px;
+        }
+        .example {
+            background: #f0f8ff; 
+            border-left: 4px solid #007bff; 
+            padding: 10px; 
+            margin-bottom: 20px;
+        }
+        .code {
+            background: #f8f8f8; 
+            border: 1px solid #ccc; 
+            padding: 10px; 
+            font-family: monospace; 
+            overflow: auto;
+        }
+        .button {
+            background: #007bff; 
+            color: white; 
+            border: none; 
+            padding: 10px 15px; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            margin-top: 10px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .actions {
+            display: flex; 
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Seviyeler Arayüzü için Kullanıcı Kılavuzu</h1>
+        
+        <h2>Ana Bileşenler</h2>
+        <ul>
+            <li>ID</li>
+            <li>İsim</li>
+            <li>Platform</li>
+            <li>Açıklama</li>
+            <li>Çalışma Durumu</li>
+            <li>İşlemler</li>
+        </ul>
+
+        <h2>Kullanım Talimatları</h2>
+        <div class="example">
+            <b>Yeni bir seviye eklemek için:</b>
+            <ul>
+                <li><button class="button">Ekle</button> butonuna tıklayın.</li>
+                <li>Açılan formda gerekli bilgileri doldurun.</li>
+                <li>Yeni seviyeyi oluşturmak için formu gönderin.</li>
+            </ul>
+        </div>
+
+        <h2>Özelliklerin Detaylı Açıklaması</h2>
+        <ul>
+            <li><b>ID:</b> Her seviye için benzersiz tanımlayıcı.</li>
+            <li><b>İsim:</b> Seviyeye atanan isim.</li>
+            <li><b>Platform:</b> Web, Mobil veya Platform Yok olduğunu gösterir.</li>
+            <li><b>Açıklama:</b> Seviyenin kısa açıklaması.</li>
+            <li><b>Çalışma Durumu:</b> Seviyenin mevcut <b>Çalışıyor</b> veya <b>Durdurulmuş</b> olduğunu gösterir.</li>
+            <li><b>İşlemler:</b> Her seviyeyi görüntüleme, düzenleme ve silme butonlarını içerir.</li>
+        </ul>
+
+        <h2>Kullanım Senaryosu</h2>
+        <div class="example">
+            Bir kullanıcı, oyunlaştırma sistemindeki seviyeleri yönetmesi gerekmektedir. Bunu yapmak için:
+            <ul>
+                <li>Oyunlaştırma altında ana menüden Seviyeler arayüzüne erişir.</li>
+                <li>Belirli bir seviyeyi ismi veya ID'si ile bulmak için arama çubuğunu kullanır.</li>
+                <li>Detaylarını görüntülemek için seviyeyi görüntüleme butonunu kullanarak seçer.</li>
+                <li>Gerekirse düzenleme butonunu kullanarak seviyenin bilgilerini düzenler.</li>
+                <li>Artık ihtiyaç duyulmayan bir seviyeyi silme butonunu kullanarak siler.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

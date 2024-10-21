@@ -1,0 +1,114 @@
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kullanıcı Kılavuzu - Veri Tasarım Arayüzü</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #eaeaea;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .example {
+            background: #f0f8ff;
+            border-left: 4px solid #007bff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .code {
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: monospace;
+            overflow: auto;
+        }
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Veri Tasarım Arayüzü Kullanıcı Kılavuzu</h1>
+        
+        <h2>Ana Bileşenler</h2>
+        <ul>
+            <li><b>ID:</b> Her veri girişi için benzersiz tanımlayıcı.</li>
+            <li><b>Bağlantı Adı:</b> Kullanılan veritabanı veya veri bağlantısının adı.</li>
+            <li><b>Dosya Adı:</b> İlişkili dosya veya veri setinin adı.</li>
+            <li><b>İşlemler:</b> Girişleri düzenleme, silme veya yönetme gibi işlemleri gerçekleştirmek için düğmeler.</li>
+        </ul>
+
+        <h2>Kullanım Talimatları</h2>
+        <ul>
+            <li>Uygulamanın Veri Tasarım bölümüne gidin.</li>
+            <li>Tabloda görüntülenen veri girişleri listesini inceleyin.</li>
+            <li>Her girişin yanındaki işlem düğmelerini kullanarak verileri yönetin.</li>
+            <li>Birden fazla kayıt sayfasında gezinmek için sayfalama kontrol öğelerini kullanın.</li>
+        </ul>
+
+        <h2>Özelliklerin Ayrıntılı Açıklaması</h2>
+        <div class="example">
+            <h3>Tablo Yapısı</h3>
+            <ul>
+                <li>
+                    Tablonun başlığı, her sütun için etiketler içerir ve veri yapısını anlamayı kolaylaştırır.
+                </li>
+                <li>
+                    Alt kısım toplam giriş sayısını gösterir; bu, veri sayfalamasını yönetmeye yardımcı olur.
+                </li>
+            </ul>
+        </div>
+
+        <h2>Kullanım Senaryosu</h2>
+        <div class="example">
+            <b>Senaryo:</b> Alice adında bir kullanıcı, veri bağlantılarını yönetmek istiyor.
+            <ul>
+                <li>Alice Veri Tasarım arayüzüne erişir.</li>
+                <li>ID ve Bağlantı Adını inceleyerek bağlantılarını tanımlar.</li>
+                <li>Alice güncellemesi gereken bir girişi fark eder, İşlemler sütunundaki düzenleme düğmesine tıklar.</li>
+                <li>Gerekli değişiklikleri yaptıktan sonra, Alice güncellemelerini kaydeder.</li>
+                <li>Alice değişikliklerini onaylamak için aşağıda görüntülenen toplam kayıtları kontrol eder.</li>
+            </ul>
+        </div>
+
+        <div class="actions">
+        </div>
+    </div>
+</body>
+</html>

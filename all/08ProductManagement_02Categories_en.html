@@ -1,0 +1,108 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories User Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #eaeaea;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .example {
+            background: #f0f8ff;
+            border-left: 4px solid #007bff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .code {
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: monospace;
+            overflow: auto;
+        }
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Categories User Guide</h1>
+        
+        <h2>Main Components</h2>
+        <ul>
+            <li><b>ID</b>: Unique identifier for each category.</li>
+            <li><b>Brand</b>: Represents the name of the brand.</li>
+            <li><b>Category</b>: Description of the category.</li>
+            <li><b>Actions</b>: Options to edit or delete an entry.</li>
+        </ul>
+
+        <h2>Usage Instructions</h2>
+        <ul>
+            <li>To add a new category, click on the <button class="button">Add</button> button.</li>
+            <li>Use the search bar to filter categories by name.</li>
+            <li>Select the checkbox next to a category to perform bulk actions if necessary.</li>
+            <li>To edit a category, click the edit (pencil) icon in the <b>Actions</b> column.</li>
+            <li>To delete a category, click the delete (trash) icon in the <b>Actions</b> column.</li>
+        </ul>
+
+        <h2>Detailed Explanation of Features</h2>
+        <div class="example">
+            <p>The interface above displays a table listing all categories along with their attributes:</p>
+            <ul>
+                <li><b>ID</b>: Each category is assigned a unique ID for tracking.</li>
+                <li><b>Brand</b>: Lists brands like ADIDAS and NIKE.</li>
+                <li><b>Category</b>: Specifies the type of product, such as "Günlük Ayakkabı" (Daily Shoes) or "Spor Ayakkabı" (Sport Shoes).</li>
+                <li><b>Total</b>: Displays the total number of categories listed.</li>
+            </ul>
+        </div>
+
+        <h2>Use Case Scenario</h2>
+        <p>Imagine you are managing a product database and need to add a new category:</p>
+        <div class="code">
+            Step 1: Click the <button class="button">Add</button> button.<br>
+            Step 2: Fill in the required fields for brand and category.<br>
+            Step 3: Click 'Save' to add the category to the list.<br>
+            Step 4: Use the search function to quickly access specific categories.
+        </div>
+        
+    </div>
+</body>
+</html>

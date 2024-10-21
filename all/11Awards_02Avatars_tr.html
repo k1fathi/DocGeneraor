@@ -1,0 +1,108 @@
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kullanıcı Kılavuzu - Avatar Arayüzü</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; 
+            background-color: #f9f9f9; 
+            margin: 0; 
+            padding: 20px;
+        }
+        .container {
+            width: 80%; 
+            margin: auto; 
+            background: #ffffff; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none; 
+            padding: 0;
+        }
+        li {
+            background: #eaeaea; 
+            margin: 5px 0; 
+            padding: 10px; 
+            border-radius: 4px;
+        }
+        .example {
+            background: #f0f8ff; 
+            border-left: 4px solid #007bff; 
+            padding: 10px; 
+            margin-bottom: 20px;
+        }
+        .code {
+            background: #f8f8f8; 
+            border: 1px solid #ccc; 
+            padding: 10px; 
+            font-family: monospace; 
+            overflow: auto;
+        }
+        .button {
+            background: #007bff; 
+            color: white; 
+            border: none; 
+            padding: 10px 15px; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            margin-top: 10px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .actions {
+            display: flex; 
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Kullanıcı Kılavuzu - Avatar Arayüzü</h1>
+        
+        <h2>Ana Bileşenler</h2>
+        <ul>
+            <li><b>Avatar Görüntü Alanı:</b> Seçenekler arasında mevcut avatarları gösterir.</li>
+            <li><b>Ekle Butonu:</b> Kullanıcıların yeni avatarlar eklemesine olanak tanır.</li>
+            <li><b>Paginasyon Kontrolleri:</b> Avatar sayfaları arasında gezinme kontrollerini içerir.</li>
+            <li><b>Toplam Sayı:</b> Mevcut toplam avatar sayısını gösterir.</li>
+        </ul>
+
+        <h2>Kullanım Talimatları</h2>
+        <ul>
+            <li>Bir avatare tıklayarak seçin.</li>
+            <li>Yeni bir avatar eklemek için <button class="button">Ekle</button> butonuna tıklayın.</li>
+            <li>Aşağıdaki paginasyon kontrollerini kullanarak avatarlar arasında gezinmek için.</li>
+        </ul>
+
+        <h2>Özelliklerin Ayrıntılı Açıklaması</h2>
+        <div class="example">
+            <h3>Avatar Seçimi</h3>
+            <p>Bir avatare tıkladığınızda, seçim için vurgulanır, bu da kullanıcıların seçeneklerini daha net görmesini sağlar.</p>
+        </div>
+        <div class="example">
+            <h3>Yeni Avatarlar Ekleme</h3>
+            <p><button class="button">Ekle</button> butonuna basmak, yeni bir avatar eklemek için bir diyalog açar.</p>
+        </div>
+        <div class="example">
+            <h3>Paginasyon</h3>
+            <p>Paginasyon kontrolleri, kullanıcıların bir sonraki veya önceki avatar setine geçmesine olanak tanır. Toplam sayı, kullanıcının ne kadar seçenek olduğunu anlamasına yardımcı olur.</p>
+        </div>
+
+        <h2>Kullanım Durumu Senaryosu</h2>
+        <p>Bir kullanıcı avatarını değiştirmek istediğinde:</p>
+        <ul>
+            <li>Kullanıcı avatar arayüzünü açar.</li>
+            <li>Mevcut avatarlar arasında gezinir, toplam sayıyı gözlemler.</li>
+            <li>Bir avatare seçtikten sonra, onu kullanmayı tercih edebilir veya yeni bir eklemek için <button class="button">Ekle</button> butonuna tıklayabilir.</li>
+            <li>Son olarak, uygun bir avatar bulamazsa birden fazla sayfa arasında gezinebilir.</li>
+        </ul>
+    </div>
+</body>
+</html>

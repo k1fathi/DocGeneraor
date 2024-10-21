@@ -184,7 +184,8 @@ schema = Schema(title=TEXT(stored=True), path=ID(stored=True), content=TEXT)
 index = create_in(index_dir, schema)
 
 # Index the HTML files in the "C:\K1\projects\zuzzuu_app\docs\New Docs" directory
-docs_dir = os.path.join("C:", "K1", "projects", "zuzzuu_app", "docs", "New Docs")
+#docs_dir = os.path.join("C:", "K1", "projects", "zuzzuu_app", "docs", "New Docs")
+docs_dir = os.path.join("all")
 for root, dirs, files in os.walk(docs_dir):
     for file in files:
         if file.endswith(".html"):
@@ -194,29 +195,6 @@ for root, dirs, files in os.walk(docs_dir):
             writer = index.writer()
             writer.add_document(title=file, path=file_path, content=html_content)
             writer.commit()
-
-@app.route('/search1', methods=['GET'])
-def search():
-    # Get the search query from the URL parameters
-    search_query = request.args.get('q')
-    if not search_query:
-        return jsonify({"error": "Please provide a search query using the 'q' parameter."}), 400
-
-    # Perform the search using Whoosh
-    results_list = []
-    with index.searcher() as searcher:
-        query = QueryParser("content", index.schema).parse(search_query)
-        results = searcher.search(query)
-
-        # Collect the results into a list of dictionaries
-        for result in results:
-            results_list.append({
-                'title': result['title'],
-                'path': result['path']
-            })
-
-    # Return the search results as a JSON response
-    return jsonify({"results": results_list})
 
 def search_html_files(directory, search_term):
     results = []
@@ -235,7 +213,8 @@ def search_html_files(directory, search_term):
 @app.route('/api/search', methods=['GET'])
 def search_endpoint():
     search_term = request.args.get('q')
-    directory = request.args.get('dir', 'C:\\K1\\projects\\zuzzuu_app\\docs\\New Docs\\all')  # Default directory
+    #directory = request.args.get('dir', 'C:\\K1\\projects\\zuzzuu_app\\docs\\New Docs\\all')  # Default directory
+    directory = request.args.get('dir', 'all')  # Default directory
     
     if not search_term:
         return jsonify({"error": "No search term provided"}), 400
@@ -245,7 +224,11 @@ def search_endpoint():
 
 @app.route('/api/files', methods=['GET'])
 def get_files():
-    directory = r"C:\K1\projects\zuzzuu_app\docs\New Docs\all"
+    # Get the directory of the current script (main.py)
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    # Construct the path to the 'all' directory
+    directory = os.path.join(current_dir, 'all')
+    
     files = []
     for filename in os.listdir(directory):
         if filename.endswith('.html'):

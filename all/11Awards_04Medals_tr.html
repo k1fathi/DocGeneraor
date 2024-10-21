@@ -1,0 +1,106 @@
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madalyalar Arayüzü için Kullanıcı Kılavuzu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #eaeaea;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .example {
+            background: #f0f8ff;
+            border-left: 4px solid #007bff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .code {
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: monospace;
+            overflow: auto;
+        }
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Madalyalar Arayüzü için Kullanıcı Kılavuzu</h1>
+
+        <h2>Ana Bileşenler</h2>
+        <ul>
+            <li><b>Madalyalar Gösterimi:</b> Mevcut madalyaları gösterir.</li>
+            <li><b>Çöp İkonu:</b> Madalyaların kaldırılmasını sağlar.</li>
+            <li><b>Toplam Madalya Sayısı:</b> Toplam madalya sayısını gösterir.</li>
+            <li><b>Ekle Butonu:</b> Daha fazla madalya ekleme seçeneği sunar.</li>
+            <li><b>Paginasyon Kontrolleri:</b> Birden fazla sayfa arasında gezinmeye olanak tanır, varsa geçerlidir.</li>
+        </ul>
+
+        <h2>Kullanım Talimatları</h2>
+        <ul>
+            <li>Yeni bir madalya eklemek için <b>Ekle</b> butonuna tıklayın.</li>
+            <li>Mevcut bir madalyayı kaldırmak için, madalyanın yanındaki <b>çöp ikonuna</b> tıklayın.</li>
+            <li>Madalya sayınıza genel bir bakış için en alttaki <b>Toplam</b> sayısını kontrol edin.</li>
+            <li>Birden fazla madalya sayfasında gezinmek için <b>paginasyon kontrollerini</b> kullanın.</li>
+        </ul>
+
+        <h2>Özelliklerin Detaylı Açıklaması</h2>
+        <div class="example">
+            <p><b>Madalyalar Gösterimi</b>, elde edilen başarıları temsil eden <b>10K</b> ve <b>25K</b> gibi madalyaları altın madalya formatında gösterir. Her madalyanın kaldırılması için bir çöp ikonu bulunmaktadır.</p>
+        </div>
+
+        <h2>Kullanım Senaryosu</h2>
+        <div class="code">
+            <code>
+                1. Kullanıcı sisteme giriş yapar.<br>
+                2. Kullanıcı madalya listesini görüntüler.<br>
+                3. Kullanıcı <b>Ekle</b> butonuna tıklayarak yeni bir madalya eklemeye karar verir.<br>
+                4. Kullanıcı kaldırmak istediği madalyanın yanındaki <b>çöp ikonuna</b> tıklar.<br>
+                5. Kullanıcı güncellenmiş <b>Toplam</b> madalya sayısını gözlemler.<br>
+            </code>
+        </div>
+
+        <div class="actions">
+        </div>
+    </div>
+</body>
+</html>

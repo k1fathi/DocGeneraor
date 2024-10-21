@@ -1,0 +1,98 @@
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oyun Etkinlikleri Kullanıcı Kılavuzu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #eaeaea;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .example {
+            background: #f0f8ff;
+            border-left: 4px solid #007bff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .code {
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: monospace;
+            overflow: auto;
+        }
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Oyun Etkinlikleri Kullanıcı Kılavuzu</h1>
+        
+        <h2>Ana Bileşenler</h2>
+        <ul>
+            <li><b>Tarih Seç:</b> Etkinlik filtreleme için tarih seçmek üzere giriş alanı.</li>
+            <li><b>Oyunlar:</b> Belirli bir oyunu seçmek için açılır menü.</li>
+            <li><b>Filtre Butonu:</b> Seçilen filtreleri uygulamak için buton.</li>
+            <li><b>Etkinlik Tablosu:</b> Seçilen filtreler temelinde oyun etkinliklerini görüntüler.</li>
+        </ul>
+
+        <h2>Kullanım Talimatları</h2>
+        <ol>
+            <li><b>Tarih Seç</b> alanından istediğiniz tarihi seçin.</li>
+            <li><b>Oyunlar</b> açılır menüsünden bir oyun seçin.</li>
+            <li>Olayları görüntülemek için <button class="button">Filtre</button> butonuna tıklayın.</li>
+            <li>Eğer hiç etkinlik bulunamazsa, uygun bir mesaj gösterilecektir.</li>
+        </ol>
+
+        <h2>Özelliklerin Ayrıntılı Açıklaması</h2>
+        <ul>
+            <li><b>Tarih Seç:</b> Bu alan mm/gg/yyyy formatında bir tarih gerektirir. Kullanıcıların tarihi filtrelemesine olanak tanır.</li>
+            <li><b>Oyunlar:</b> Bu açılır menü, kullanıcıların oyun listesinden bir oyun seçmesine olanak tanır. Bir oyun seçmek, gösterilen etkinlikleri etkileyecektir.</li>
+            <li><b>Etkinlik Tablosu:</b> Tablo, filtrelenmiş sonuçları gösterir. Eğer kriterlere uyan etkinlik yoksa, "Oyun etkinliği bulunamadı." mesajı görünecektir.</li>
+        </ul>
+
+        <h2>Kullanım Senaryosu</h2>
+        <div class="example">
+            <p>Bir kullanıcı sisteme giriş yaptığında, "Oyun Etkinlikleri" sayfasına yönelir. <b>Tarih Seç</b> alanına "31/10/2023" yazar ve açılır menüden "Oyun A"yı seçer. <button class="button">Filtre</button> butonuna tıkladıktan sonra, seçilen tarih için "Oyun A" ile ilgili etkinliklerin bir listesini görür. Eğer o tarih ve oyun için etkinlik yoksa, oyun etkinliklerinin bulunmadığı bildirilecektir.</p>
+        </div>
+    </div>
+</body>
+</html>

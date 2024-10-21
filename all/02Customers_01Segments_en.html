@@ -1,0 +1,126 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Segments User Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background: #eaeaea;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .example {
+            background: #f0f8ff;
+            border-left: 4px solid #007bff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .code {
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: monospace;
+            overflow: auto;
+        }
+
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .button:hover {
+            background: #0056b3;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Segments User Guide</h1>
+
+        <h2>Main Components</h2>
+        <ul>
+            <li><b>Segment No:</b> Identifier for each segment.</li>
+            <li><b>Segment Name:</b> Name associated with the segment.</li>
+            <li><b>Required Points:</b> Points needed for participation.</li>
+            <li><b>Reward Point:</b> Points earned upon completion.</li>
+            <li><b>Customer Count:</b> Number of customers in the segment.</li>
+            <li><b>Filters:</b> Used for refining the displayed segments.</li>
+        </ul>
+
+        <h2>Usage Instructions</h2>
+        <div class="example">
+            <h3>Adding a New Segment:</h3>
+            <ol>
+                <li>Click the <button class="button">Add</button> button.</li>
+                <li>Fill in the necessary details in the provided form.</li>
+                <li>Submit the form to create a new segment.</li>
+            </ol>
+        </div>
+
+        <h2>Detailed Explanation of Features</h2>
+        <ul>
+            <li>
+                <b>Word Search:</b> A search field to quickly locate specific segments based on name.
+            </li>
+            <li>
+                <b>Filter Active:</b> Options to display only active or inactive segments.
+            </li>
+            <li>
+                <b>Filter Deleted:</b> Options to show segments that are deleted or not deleted.
+            </li>
+        </ul>
+
+        <h2>Use Case Scenario</h2>
+        <div class="example">
+            <p>
+                A user wants to find specific segments that have a reward point greater than 10. They can utilize the 
+                <b>Word Search</b> field to input keywords related to the segments. If the user wants to filter 
+                further, they can select <b>Only Active</b> from the <b>Filter Active</b> dropdown menu to see only 
+                segments currently in use.
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

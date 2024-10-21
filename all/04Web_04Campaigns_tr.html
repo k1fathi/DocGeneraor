@@ -1,0 +1,114 @@
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kampanyalar Kullanıcı Kılavuzu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #eaeaea;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .example {
+            background: #f0f8ff;
+            border-left: 4px solid #007bff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .code {
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: monospace;
+            overflow: auto;
+        }
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Kullanıcı Kılavuzu: Kampanyalar Arayüzü</h1>
+
+        <h2>Ana Bileşenler</h2>
+        <ul>
+            <li><b>Kampanyalar Başlığı:</b> Kampanya bölümünün ana başlığı.</li>
+            <li><b>Kelime Arama:</b> Belirli kampanyaları aramak için giriş kutusu.</li>
+            <li><b>Filtreler:</b> Aktif veya silinmiş kampanyaları filtreleme seçenekleri.</li>
+            <li><b>Ekle Butonu:</b> Yeni bir kampanya oluşturmak için buton.</li>
+            <li><b>Kampanya Listesi:</b> Kaydedilen kampanyaların ve eylemlerin görüntülenmesi.</li>
+            <li><b>Eylemler:</b> Kampanyaları düzenleme veya silme simgeleri.</li>
+        </ul>
+
+        <h2>Kullanım Talimatları</h2>
+        <div class="example">
+            <p>Kampanyalar arayüzünü kullanmak için bu adımları izleyin:</p>
+            <ul>
+                <li>Belirli kampanyaları bulmak için <b>Kelime Arama</b> alanına bir anahtar kelime yazın.</li>
+                <li><b>Aktif</b> veya <b>Silinmiş</b> kampanyaları görüntülemek için filtre seçeneklerini seçin.</li>
+                <li>Yeni bir kampanya oluşturmak için <button class="button">Ekle</button> butonuna tıklayın.</li>
+                <li>Kampanya listesinden istenen eylemi (düzenleme veya silme) seçin.</li>
+            </ul>
+        </div>
+
+        <h2>Özelliklerin Ayrıntılı Açıklaması</h2>
+        <ul>
+            <li><b>Kelime Arama:</b> Anahtar kelimelere dayalı olarak kampanyaları hızlı bir şekilde bulmanızı sağlar.</li>
+            <li><b>Filtreler:</b> Kampanyaların görünürlüğünü durumlarına göre ayarlama. Seçenekler şunlardır:
+                <ul>
+                    <li><code>Sadece Aktif</code></li>
+                    <li><code>Sadece Silinmemiş</code></li>
+                </ul>
+            </li>
+            <li><b>Yeni Kampanya Ekle:</b> Oluşturma arayüzüne gitmek için <button class="button">Ekle</button> butonunu kullanın.</li>
+            <li><b>Kampanya Listesi:</b> Kampanyaları, benzersiz <b>Kayd No.</b> ve eylemleriyle birlikte görüntüler.
+                <div class="code">
+                    <code>
+                        Kayıt No. | Kampanya <br>
+                        14        | maxid <br>
+                        13        | test <br>
+                        12        | test işlevi <br>
+                        9         | Çalışma Kampanyaları
+                    </code>
+                </div>
+            </li>
+            <li><b>Eylemler:</b> Her kampanyanın düzenleme (<span>&#9998;</span>) ve silme (<span>&#10006;</span>) için ilgili eylem simgeleri vardır.</li>
+        </ul>
+    </div>
+</body></html>

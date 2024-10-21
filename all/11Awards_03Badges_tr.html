@@ -1,0 +1,100 @@
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rozet Arayüzü Kullanıcı Rehberi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #eaeaea;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .example {
+            background: #f0f8ff;
+            border-left: 4px solid #007bff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .code {
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: monospace;
+            overflow: auto;
+        }
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Rozet Kullanıcı Rehberi</h1>
+
+        <h2>Ana Bileşenler</h2>
+        <ul>
+            <li><b>Rozet Alanı</b>: Kullanıcının kazandığı çeşitli rozetleri gösterir.</li>
+            <li><b>Silme İkonu</b>: Bir rozeti kaldırma seçeneği, çöp kutusu ikonu ile gösterilir.</li>
+            <li><b>Rozet Ekle Butonu</b>: Kullanıcıların koleksiyonlarına yeni bir rozet eklemelerine olanak tanır.</li>
+        </ul>
+
+        <h2>Kullanım Talimatları</h2>
+        <ul>
+            <li>Ana menüden <b>Rozetler</b> bölümüne gidin.</li>
+            <li><b>Bir rozet eklemek</b> için <button class="button">Ekle</button> butonuna tıklayın.</li>
+            <li><b>Bir rozeti silmek</b> için kaldırmak istediğiniz rozete bitişik çöp kutusu ikonuna tıklayın.</li>
+        </ul>
+
+        <h2>Özelliklerin Ayrıntılı Açıklaması</h2>
+        <ul>
+            <li><b>Rozet Alanı</b>: Her rozet, bir dairesel simge ile temsil edilir ve katılım, tamamlama veya kilometre taşları gibi başarıları gösterebilir.</li>
+            <li><b>Rozet Ekle Butonu</b>: Yeni rozet girişleri oluşturmak için bir arayüz başlatan belirgin mavi bir butondur.</li>
+            <li><b>Silme İkonu</b>: Kullanıcıların artık göstermek istemedikleri rozetleri kaldırmasını sağlayarak rozet yönetimini kolaylaştırır.</li>
+        </ul>
+
+        <h2>Kullanım Senaryosu</h2>
+        <div class="example">
+            <p>Bir kullanıcının önemli bir projeyi tamamladığını düşünün. Yapabilecekleri:</p>
+            <ul>
+                <li>Bu başarıyı kutlayan bir rozeti eklemek için <button class="button">Ekle</button> butonuna tıklamak.</li>
+                <li>Mevcut rozetlerini gözden geçirip artık geçerli olmayan bir rozeti çöp kutusu ikonuna tıklayarak kaldırmaya karar vermek.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

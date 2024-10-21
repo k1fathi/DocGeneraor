@@ -1,0 +1,114 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Guide - Data Design Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #eaeaea;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .example {
+            background: #f0f8ff;
+            border-left: 4px solid #007bff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .code {
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: monospace;
+            overflow: auto;
+        }
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Data Design Interface User Guide</h1>
+        
+        <h2>Main Components</h2>
+        <ul>
+            <li><b>ID:</b> Unique identifier for each data entry.</li>
+            <li><b>Connection Name:</b> Name of the database or data connection being used.</li>
+            <li><b>File Name:</b> Name of the associated file or dataset.</li>
+            <li><b>Actions:</b> Buttons to perform actions such as edit, delete, or manage the entries.</li>
+        </ul>
+
+        <h2>Usage Instructions</h2>
+        <ul>
+            <li>Navigate to the Data Design section of the application.</li>
+            <li>Review the list of data entries displayed in the table.</li>
+            <li>Use the action buttons next to each entry for managing data.</li>
+            <li>Utilize the pagination controls to navigate through multiple pages of records.</li>
+        </ul>
+
+        <h2>Detailed Explanation of Features</h2>
+        <div class="example">
+            <h3>Table Structure</h3>
+            <ul>
+                <li>
+                    The header of the table contains labels for each column, making it easy to understand the data structure.
+                </li>
+                <li>
+                    The footer shows the total number of entries, which helps in managing data pagination.
+                </li>
+            </ul>
+        </div>
+
+        <h2>Use Case Scenario</h2>
+        <div class="example">
+            <b>Scenario:</b> A user named Alice wants to manage her data connections.
+            <ul>
+                <li>Alice accesses the Data Design interface.</li>
+                <li>She reviews the ID and Connection Name to identify her connections.</li>
+                <li>Alice notices an entry that she needs to update, she clicks on the edit button in the Actions column.</li>
+                <li>After making the necessary changes, Alice saves her updates.</li>
+                <li>She checks the total records displayed at the bottom to confirm her changes.</li>
+            </ul>
+        </div>
+
+        <div class="actions">
+        </div>
+    </div>
+</body>
+</html>

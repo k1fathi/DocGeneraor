@@ -1,0 +1,129 @@
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilgi Yönetimi Kullanıcı Kılavuzu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #eaeaea;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .example {
+            background: #f0f8ff;
+            border-left: 4px solid #007bff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .code {
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: monospace;
+            overflow: auto;
+        }
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bilgi Yönetimi Kullanıcı Kılavuzu</h1>
+
+        <h2>Ana Bileşenler</h2>
+        <ul>
+            <li>
+                <b>Bilgi Adı:</b> Bilgi oyununun adı.
+            </li>
+            <li>
+                <b>Bilgi Başlangıç Tarihi:</b> Bilgi oyununun başladığı tarih ve saat.
+            </li>
+            <li>
+                <b>Bilgi Bitiş Tarihi:</b> Bilgi oyununun sona erdiği tarih ve saat.
+            </li>
+            <li>
+                <b>Bilgi Aktif Durumu:</b> Bilgi oyununun şu anda aktif olup olmadığını belirtir.
+            </li>
+            <li>
+                <b>Soru Sayısı:</b> Bilgi oyunundaki toplam soru sayısı.
+            </li>
+            <li>
+                <b>İşlemler:</b> Bilgi oyununu düzenleme veya silme seçenekleri.
+            </li>
+        </ul>
+
+        <h2>Kullanım Talimatları</h2>
+        <div class="example">
+            Bilgi oyunlarınızı yönetmek için bu adımları izleyin:
+            <ul>
+                <li><b>Kelime Arama</b> alanını kullanarak belirli bir bilgiyi bulun.</li>
+                <li>Aşağıda gösterilen listeden istenen bilgi oyununu seçin.</li>
+                <li>Yeni bir bilgi oyunu oluşturmak için <b>Ekle</b> butonunu kullanın.</li>
+                <li>Mevcut bir bilgi oyununu düzenlemek veya silmek için, <b>İşlemler</b> sütunundaki ilgili simgeleri kullanın.</li>
+            </ul>
+        </div>
+
+        <h2>Özelliklerin Detaylı Açıklaması</h2>
+        <ul>
+            <li>
+                <b>Kelime Arama:</b> Bu arama çubuğu, anahtar kelimeleri girerek hızla bir bilgi oyunu bulmanıza yardımcı olur.
+            </li>
+            <li>
+                <b>Filtre Seçenekleri:</b> Aktif duruma veya diğer parametrelere göre bilgiyi filtrelemek için açılır menüyü kullanın.
+            </li>
+            <li>
+                <b>Ekle Butonu:</b> Bu butona tıklayarak yeni bir bilgi oyunu oluşturma işlemini başlatabilirsiniz.
+            </li>
+            <li>
+                <b>Paginasyon:</b> Listenin altındaki sayfa numaralarını kullanarak birden fazla bilgi sayfası arasında gezinmek.
+            </li>
+        </ul>
+
+        <h2>Kullanım Durumu Senaryosu</h2>
+        <div class="example">
+            <b>Senaryo:</b> Bir kullanıcı yeni bir bilgi oyunu oluşturmak istiyor.
+            <ul>
+                <li>Kullanıcı <b>Ekle</b> butonuna tıklıyor.</li>
+                <li>Bilgi adını, başlangıç tarihini, bitiş tarihini dolduruyor ve soru sayısını ayarlıyor.</li>
+                <li>Tamamlandığında, yeni bilgi oyununu kaydediyor.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senaryo Yönetimi Kullanıcı Kılavuzu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #eaeaea;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .example {
+            background: #f0f8ff;
+            border-left: 4px solid #007bff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .code {
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: monospace;
+            overflow: auto;
+        }
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Senaryo Yönetimi Kullanıcı Kılavuzu</h1>
+        <h2>Ana Bileşenler</h2>
+        <ul>
+            <li><b>Kayıt No.</b> - Her senaryo için benzersiz tanımlayıcı.</li>
+            <li><b>Senaryo Adı</b> - Senaryonun adı.</li>
+            <li><b>Kampanya</b> - Senaryo ile ilişkili kampanya.</li>
+            <li><b>İşlem Türü</b> - Gerçekleştirilen işlem türü (örneğin, Kategori Görünümü).</li>
+            <li><b>İşlem Seçimi</b> - İşlem türü içindeki özel seçim.</li>
+            <li><b>İşlem Toplamı</b> - Kayıtlı işlem sayısının toplamı.</li>
+            <li><b>Ödül Puanı</b> - İşlemi tamamladığınız için verilen puanlar.</li>
+            <li><b>Etkinlik Mesajı</b> - Etkinlik tamamlama sırasında gösterilen mesaj.</li>
+            <li><b>İşlemler</b> - Senaryoyu düzenlemeye veya silmeye yarayan butonlar.</li>
+        </ul>
+
+        <h2>Kullanım Talimatları</h2>
+        <div class="example">
+            <b>Yeni Bir Senaryo Eklemek İçin:</b>
+            <ul>
+                <li><button class="button">Ekle</button> butonuna tıklayın.</li>
+                <li>Yeni senaryo için gerekli alanları doldurun.</li>
+                <li>Yeni senaryoyu oluşturmak için <b>Kaydet</b> butonuna tıklayın.</li>
+            </ul>
+        </div>
+        
+        <h2>Özelliklerin Detaylı Açıklaması</h2>
+        <ul>
+            <li><b>Kelimelerle Arama:</b> Bu alanı senaryoları isimle aramak için kullanın.</li>
+            <li><b>Aktif Filtre:</b> Aktif ve inaktif senaryolar arasında geçiş yapın.</li>
+            <li><b>Silinmiş Filtre:</b> Silinmiş senaryoları veya yalnızca aktif olanları görüntüleyin.</li>
+            <li><b>Arama:</b> Bu girişi kullanarak belirli kayıtları hızla bulun.</li>
+        </ul>
+
+        <h2>Kullanım Senaryosu</h2>
+        <div class="example">
+            <b>Örnek Senaryo:</b>
+            <ul>
+                <li>Bir kullanıcı "Elektronik" ile ilgili aktif senaryoları gözden geçirmek istiyor.</li>
+                <li>"Elektronik" kelimesini Kelimelerle Arama alanına giriyor.</li>
+                <li>Aktif Filtre açılır menüsünde "Yalnızca Aktif" seçeneğini ayarlıyor.</li>
+                <li>Sistem, kullanıcıya İşlemler sütunundan eylemler seçme imkanı sunarak ilgili senaryoları görüntülüyor.</li>
+            </ul>
+        </div>
+
+        <!--<div class="actions">
+            <button class="button">Geri</button>
+            <button class="button">Ana Sayfa</button>
+        </div>-->
+</body></html>

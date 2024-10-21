@@ -1,0 +1,112 @@
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veri Kaynakları Kullanıcı Kılavuzu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #eaeaea;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .example {
+            background: #f0f8ff;
+            border-left: 4px solid #007bff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .code {
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: monospace;
+            overflow: auto;
+        }
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Veri Kaynakları Kullanıcı Kılavuzu</h1>
+
+        <h2>Ana Bileşenler</h2>
+        <ul>
+            <li><b>Veri Kaynağı Listesi:</b> Adı, türü ve durumu gibi detaylarla birlikte görüntülenen öğeler.</li>
+            <li><b>İşlem Menüsü:</b> Veri kaynaklarını düzenleme ve kontrol etme düğmeleri.</li>
+            <li><b>Arama Kutusu:</b> Veri kaynakları arasında arama yapma alanı.</li>
+        </ul>
+
+        <h2>Kullanım Talimatları</h2>
+        <div class="example">
+            Veri kaynaklarınızı yönetmek için bu adımları izleyin:
+        </div>
+        <ul>
+            <li><b>Arama Kutusu</b>nu kullanarak belirli veri kaynaklarını ad veya kriterlere göre bulun.</li>
+            <li>Liste içinden bir veri kaynağını seçerek detaylarını görüntüleyin.</li>
+            <li>Seçilen veri kaynağında değişiklik yapmak için <b>Düzenle</b> düğmesine tıklayın.</li>
+            <li>Yeni veri kaynakları oluşturmak için <b>+ Ekle</b> düğmesini kullanın.</li>
+            <li>Yapılan değişiklikleri <b>Kaydet</b> düğmesi ile onaylayın.</li>
+        </ul>
+
+        <h2>Özelliklerin Detaylı Açıklaması</h2>
+        <ul>
+            <li>
+                <b>Veri Kaynağı Adı:</b> Veri kaynağının ne için olduğunu belirten etiket, açıklık sağlar.
+            </li>
+            <li>
+                <b>Bağlantı Türü:</b> Veri almak için kullanılan mekanizmayı tanımlar, örneğin API, veritabanı vb.
+            </li>
+            <li>
+                <b>Durum:</b> Veri kaynağının aktif, pasif veya sorunlu olup olmadığını belirtir.
+            </li>
+        </ul>
+
+        <h2>Kullanım Senaryosu</h2>
+        <div class="example">
+            Örnek: Yeni Bir Veri Kaynağı Ekleme
+            <div class="code">
+                1. <button class="button">+ Ekle</button> düğmesine tıklayın.<br>
+                2. Gerekli alanları doldurun: Ad ve Bağlantı Türü.<br>
+                3. Veri kaynağını eklemek için <button class="button">Kaydet</button> düğmesine tıklayın.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

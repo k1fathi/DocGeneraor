@@ -1,0 +1,113 @@
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yolculuk Arayüzü Kullanıcı Kılavuzu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; 
+            background-color: #f9f9f9; 
+            margin: 0; 
+            padding: 20px;
+        }
+        .container {
+            width: 80%; 
+            margin: auto; 
+            background: #ffffff; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none; 
+            padding: 0;
+        }
+        li {
+            background: #eaeaea; 
+            margin: 5px 0; 
+            padding: 10px; 
+            border-radius: 4px;
+        }
+        .example {
+            background: #f0f8ff; 
+            border-left: 4px solid #007bff; 
+            padding: 10px; 
+            margin-bottom: 20px;
+        }
+        .code {
+            background: #f8f8f8; 
+            border: 1px solid #ccc; 
+            padding: 10px; 
+            font-family: monospace; 
+            overflow: auto;
+        }
+        .button {
+            background: #007bff; 
+            color: white; 
+            border: none; 
+            padding: 10px 15px; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            margin-top: 10px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .actions {
+            display: flex; 
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Yolculuk Arayüzü Kullanıcı Kılavuzu</h1>
+
+        <h2>Ana Bileşenler</h2>
+        <ul>
+            <li><b>ID</b>: Her yolculuk için benzersiz tanımlayıcı.</li>
+            <li><b>Ad</b>: Yolculuğun başlığı.</li>
+            <li><b>Seviye Adı</b>: Yolculukla ilişkili seviyeyi belirtir.</li>
+            <li><b>Platform</b>: Yolculuğun tasarlandığı platformu belirtir (örneğin, Web, Mobil).</li>
+            <li><b>Açıklama</b>: Yolculuğun amacının kısa bir açıklaması.</li>
+            <li><b>Çalışma Durumu</b>: Geçerli etkinlik durumunu gösterir (örneğin, Çalışıyor, Durduruldu).</li>
+            <li><b>İşlemler</b>: Her yolculukla etkileşimde bulunma seçeneklerini sunar (örneğin, düzenle, sil).</li>
+        </ul>
+
+        <h2>Kullanım Talimatları</h2>
+        <div class="example">
+            <b>Yeni Bir Yolculuk Eklemek İçin:</b>
+            <ul>
+                <li>Arayüzün sağ üst köşesindeki <button class="button">Ekle</button> butonuna tıklayın.</li>
+                <li>Yolculuk detayları için zorunlu alanları doldurun.</li>
+                <li>Yolculuğu oluşturmak için formu gönderin.</li>
+            </ul>
+        </div>
+
+        <h2>Özelliklerin Ayrıntılı Açıklaması</h2>
+        <ul>
+            <li><b>Kelime Arama</b>: Yolculukları isimleri veya açıklamalarındaki anahtar kelimelere göre filtrelemeye yardımcı olur.</li>
+            <li><b>Silinenleri Filtrele</b>: Yalnızca silinmemiş yolculukları mı yoksa tüm yolculukları mı göstereceğinizi seçmenize olanak tanır.</li>
+            <li><b>Çalışma Durumu Renkleri</b>: 
+                <ul>
+                    <li><span style="color: green;">Çalışıyor</span> - yolculuğun şu anda aktif olduğunu belirtir.</li>
+                    <li><span style="color: red;">Durduruldu</span> - yolculuğun pasif olduğunu belirtir.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>Kullanım Senaryosu</h2>
+        <div class="example">
+            <b>Senaryo:</b> Bir kullanıcı aktif bir yolculuğun açıklamasını düzenlemek istiyor.
+            <ul>
+                <li>Yolculuk listesini geçin ve istediğiniz yolculuğu bulun.</li>
+                <li>İşlemler sütunundaki <b>Düzenle</b> simgesine tıklayın.</li>
+                <li>Verilen metin alanında açıklamayı değiştirin.</li>
+                <li>Yolculuğu güncellemek için değişiklikleri kaydedin.</li>
+            </ul>
+        </div>
+    </div>
+</body></html>

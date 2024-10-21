@@ -1,0 +1,107 @@
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bildirim Arayüzü Kullanım Kılavuzu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #eaeaea;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .example {
+            background: #f0f8ff;
+            border-left: 4px solid #007bff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .code {
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: monospace;
+            overflow: auto;
+        }
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bildirim Kullanım Kılavuzu</h1>
+
+        <h2>Ana Bileşenler</h2>
+        <ul>
+            <li><b>Kayıt No.</b> - Her bildirim kaydı için benzersiz tanımlayıcı.</li>
+            <li><b>Senaryo Adı</b> - Bildirim ile ilişkilendirilmiş senaryonun adı.</li>
+            <li><b>Müşteri No.</b> - Müşteri için benzersiz tanımlayıcı.</li>
+            <li><b>Mesaj Ayrıntıları</b> - Bildirimle ilgili açıklama veya mesaj içeriği.</li>
+            <li><b>Kampanya Ayrıntısı</b> - Bildirimle bağlantılı kampanyaya ilişkin özel ayrıntılar.</li>
+            <li><b>Push Abone Kimliği</b> - Push bildirimini alan aboneni tanımlayan kimlik.</li>
+        </ul>
+
+        <h2>Kullanım Talimatları</h2>
+        <div class="example">
+            Bildirimleri görüntülemek için:
+            <ul>
+                <li><b>Bildirimler</b> bölümüne gidin.</li>
+                <li>Anahtar kelimelere göre bildirimleri filtrelemek için <b>Arama</b> alanını kullanın.</li>
+                <li><b>Kullanıcı ID'si</b>, <b>Kampanyalar</b> veya <b>Senaryolar</b> ile daraltmak için <b>Filtre</b> seçeneklerini kullanın.</li>
+            </ul>
+        </div>
+        
+        <h2>Özelliklerin Ayrıntılı Açıklaması</h2>
+        <ul>
+            <li><b>Kullanıcı ID Filtre:</b> Bildirimleri belirli kullanıcılara göre filtreleme imkanı sunar.</li>
+            <li><b>Kampanya Filtre:</b> Bu kampanyalarla ilişkilendirilmiş bildirimleri görüntülemek için kampanyaları seçin.</li>
+            <li><b>Senaryo Filtre:</b> İlgili bildirimleri görmek için senaryoları seçin.</li>
+        </ul>
+
+        <h2>Kullanım Senaryosu</h2>
+        <div class="example">
+            Bir kullanıcı belirli bir kampanyayla ilgili bildirimleri kontrol etmek istiyor:
+            <ul>
+                <li><b>Bildirimler</b> arayüzüne erişin.</li>
+                <li><b>Kampanyalar</b> açılır menüsünde, istenen kampanyayı seçin.</li>
+                <li>Seçilen kampanyaya göre görüntülenen filtrelenmiş bildirimleri izleyin.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

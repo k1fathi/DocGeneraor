@@ -1,0 +1,108 @@
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kategoriler Kullanıcı Kılavuzu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #eaeaea;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .example {
+            background: #f0f8ff;
+            border-left: 4px solid #007bff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .code {
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: monospace;
+            overflow: auto;
+        }
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Kategoriler Kullanıcı Kılavuzu</h1>
+        
+        <h2>Ana Bileşenler</h2>
+        <ul>
+            <li><b>ID</b>: Her kategori için benzersiz tanımlayıcı.</li>
+            <li><b>Marka</b>: Markanın adını temsil eder.</li>
+            <li><b>Kategori</b>: Kategorinin tanımı.</li>
+            <li><b>İşlemler</b>: Bir kaydı düzenleme veya silme seçenekleri.</li>
+        </ul>
+
+        <h2>Kullanım Talimatları</h2>
+        <ul>
+            <li>Yeni bir kategori eklemek için <button class="button">Ekle</button> butonuna tıklayın.</li>
+            <li>Kategorileri isimle filtrelemek için arama çubuğunu kullanın.</li>
+            <li,Gerekirse toplu işlemler yapmak için bir kategorinin yanındaki onay kutusunu seçin.</li>
+            <li>Bir kategoriyi düzenlemek için <b>İşlemler</b> sütunundaki düzenleme (kalem) simgesine tıklayın.</li>
+            <li>Bir kategoriyi silmek için <b>İşlemler</b> sütunundaki silme (çöp) simgesine tıklayın.</li>
+        </ul>
+
+        <h2>Özelliklerin Ayrıntılı Açıklaması</h2>
+        <div class="example">
+            <p>Yukarıdaki arayüz, tüm kategorileri ve bunların özelliklerini listeleyen bir tabloyu görüntüler:</p>
+            <ul>
+                <li><b>ID</b>: Her kategoriye takip için benzersiz bir ID atanır.</li>
+                <li><b>Marka</b>: ADIDAS ve NIKE gibi markaları listeler.</li>
+                <li><b>Kategori</b>: "Günlük Ayakkabı" veya "Spor Ayakkabı" gibi ürün türünü belirtir.</li>
+                <li><b>Toplam</b>: Listelenen toplam kategori sayısını gösterir.</li>
+            </ul>
+        </div>
+
+        <h2>Kullanım Senaryosu</h2>
+        <p>Bir ürün veritabanını yönettiğinizi ve yeni bir kategori eklemeniz gerektiğini hayal edin:</p>
+        <div class="code">
+            Adım 1: <button class="button">Ekle</button> butonuna tıklayın.<br>
+            Adım 2: Marka ve kategori için gerekli alanları doldurun.<br>
+            Adım 3: Kategoriyi listeye eklemek için 'Kaydet'e tıklayın.<br>
+            Adım 4: Belirli kategorilere hızlı erişim için arama fonksiyonunu kullanın.
+        </div>
+        
+    </div>
+</body>
+</html>

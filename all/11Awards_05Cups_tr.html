@@ -1,0 +1,112 @@
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ödül Kupası Arayüzü Kullanıcı Kılavuzu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #eaeaea;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .example {
+            background: #f0f8ff;
+            border-left: 4px solid #007bff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .code {
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: monospace;
+            overflow: auto;
+        }
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ödül Kupası Arayüzü Kullanıcı Kılavuzu</h1>
+        
+        <h2>Ana Bileşenler</h2>
+        <ul>
+            <li><b>Ödüller Bölümü:</b> Mevcut ödül kategorilerini gösterir.</li>
+            <li><b>Kupalar:</b> Bireysel ödülleri kupa olarak gösterir.</li>
+            <li><b>Ekleyin Butonu:</b> Kullanıcıların yeni ödüller eklemesine olanak tanır.</li>
+            <li><b>Kapat Butonu:</b> Mevcut arayüzden çıkış yapar.</li>
+            <li><b>Sil İkonu:</b> Bir ödülü kaldırma seçeneği.</li>
+        </ul>
+        
+        <h2>Kullanım Talimatları</h2>
+        <ul>
+            <li>Ödüllerinizi görmek için <b>Ödüller</b> bölümüne gidin.</li>
+            <li>Ödül hakkında detayları görmek için her bir kupaya tıklayın.</li>
+            <li>Yeni bir ödül eklemek için <button class="button">Ekle</button> butonuna tıklayın.</li>
+            <li>Herhangi bir ödülü kaldırmak için ilgili kupanın yanındaki <span class="code">🗑️</span> ikonuna tıklayın.</li>
+        </ul>
+        
+        <h2>Özelliklerin Detaylı Açıklaması</h2>
+        <div class="example">
+            <h3>Ödüller Bölümü</h3>
+            <p>Bu bölüm, aldığınız kupaları sergileyerek tüm başarılarınızı görsel bir formatta organize eder.</p>
+        </div>
+        <div class="example">
+            <h3>Kupalar</h3>
+            <p>Kupalar renk kodlu olup, farklı seviye veya türlerde ödülleri temsil eder. Renkler, sıralamayı gösterir:</p>
+            <ul>
+                <li><b>Turuncu Kupa:</b> Katılım veya temel başarı.</li>
+                <li><b>Altın Kupa:</b> Orta seviye veya kilometre taşı başarma.</li>
+                <li><b>Mavi Kupa:</b> İleri seviye veya önemli tanıma.</li>
+                <li><b> beyaz Kupa:</b> En üst seviye veya özel başarı.</li>
+            </ul>
+        </div>
+        
+        <h2>Kullanım Durumu Senaryosu</h2>
+        <p>Tipik bir etkileşimde:</p>
+        <div class="code">
+            1. Arayüzün <b>Ödüller</b> bölümüne erişin.<br>
+            2. Kupalar olarak gösterilen ödülleri gözden geçirin.<br>
+            3. Yeni bir ödül aldığınızda, eklemek için <button class="button">Ekle</button> butonuna tıklayın.<br>
+            4. Ödülleri yönetmek için, istenmeyen kupaların yanındaki silme ikonunu kullanın.
+        </div>
+    </div>
+</body>
+</html>

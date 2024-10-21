@@ -1,0 +1,107 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Guide for Goals Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #eaeaea;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .example {
+            background: #f0f8ff;
+            border-left: 4px solid #007bff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .code {
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: monospace;
+            overflow: auto;
+        }
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>User Guide for Goals Interface</h1>
+
+        <h2>Main Components</h2>
+        <ul>
+            <li><b>Record No.</b>: Unique identifier for each goal entry.</li>
+            <li><b>Goal</b>: Descriptive text representing the goal.</li>
+            <li><b>Word Search</b>: A search bar to filter goals by keywords.</li>
+            <li><b>Filter Active</b>: Options to display only active goals.</li>
+            <li><b>Filter Deleted</b>: Options to manage viewing deleted goals.</li>
+            <li><b>Add Button</b>: A button to add new goals to the list.</li>
+        </ul>
+
+        <h2>Usage Instructions</h2>
+        <ul>
+            <li>To add a new goal, click the <button class="button">Add</button> button.</li>
+            <li>To search for specific goals, enter keywords in the <b>Word Search</b> field.</li>
+            <li>Select filtering options for active and deleted goals to customize your view.</li>
+            <li>Click on a goal entry to view further options for editing or deleting the goal.</li>
+        </ul>
+
+        <h2>Detailed Explanation of Features</h2>
+        <div class="example">
+            <h3>Filters</h3>
+            <ul>
+                <li><b>Word Search:</b> Type in keywords to find specific goals.</li>
+                <li><b>Filter Active:</b> Choose "Only Active" to view current goals.</li>
+                <li><b>Filter Deleted:</b> Choose "Only Not Deleted" to exclude deleted entries.</li>
+            </ul>
+        </div>
+
+        <h2>Use Case Scenario</h2>
+        <p>Imagine you are a user managing your goals:</p>
+        <ul>
+            <li>You want to track your progress on specific objectives.</li>
+            <li>You use the <b>Word Search</b> to find a goal related to "Children’s Clothing."</li>
+            <li>After finding your goal, you confirm it is active using the <b>Filter Active</b>.</li>
+            <li>If you wish to add a new goal, simply click the <button class="button">Add</button> button and fill in the necessary details.</li>
+        </ul>
+    </div>
+</body>
+</html>

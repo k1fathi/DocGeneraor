@@ -1,0 +1,109 @@
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kural Yönetim Arayüzü Kullanıcı Kılavuzu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #eaeaea;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .example {
+            background: #f0f8ff;
+            border-left: 4px solid #007bff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .code {
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: monospace;
+            overflow: auto;
+        }
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Kural Yönetim Arayüzü Kullanıcı Kılavuzu</h1>
+        
+        <h2>Ana Bileşenler</h2>
+        <ul>
+            <li><b>ID:</b> Her kural için benzersiz kimlik.</li>
+            <li><b>Kural Adı:</b> Kuralın adı.</li>
+            <li><b>Kural Açıklaması:</b> Kuralın ne yaptığını açıklayan bilgi.</li>
+            <li><b>Kural Türü:</b> Kural türü (örn. XP Kazan).</li>
+            <li><b>Beklenen Olay Dizesi:</b> Kuralı tetikleyen olay.</li>
+            <li><b>Olay Sayısı:</b> Olayın ne kadar kez gerçekleştiği.</li>
+            <li><b>Ödül:</b> Kuralı yerine getirme için verilen puanlar veya ödüller.</li>
+            <li><b>İşlemler:</b> Mevcut kuralları düzenleme veya silme.</li>
+        </ul>
+
+        <h2>Kullanım Talimatları</h2>
+        <ul>
+            <li><b>Yeni bir kural eklemek</b> için <button class="button">Ekle</button> butonuna tıklayın.</li>
+            <li>Kural ad veya açıklamaya dayalı olarak kuralları filtrelemek için <b>Ara</b> özelliğini kullanın.</li>
+            <li>Belirli kuralları görüntülemek için <b>Silinmişleri Filtrele</b> açılır menüsünü seçin.</li>
+            <li>Bir kuralı düzenleme veya silme seçeneklerini görmek için <b>İşlemler</b> sütununu inceleyin.</li>
+        </ul>
+
+        <h2>Özelliklerin Detaylı Açıklaması</h2>
+        <div class="example">
+            <b>ID:</b> Her kural, kolayca tanımlanmasını ve yönetilmesini sağlamak için benzersiz bir ID gösterir.
+        </div>
+        <div class="example">
+            <b>Kural Adı:</b> Kuralın hangi eylemi kapsadığını açıkça belirtir ve amacını anlamayı kolaylaştırır.
+        </div>
+        <div class="example">
+            <b>Kural Açıklaması:</b> Kuralın işlevine dair detaylı bir açıklama sunar; bu, kullanıcıların gamifikasyon sistemini nasıl etkilediğini anlaması açısından kritiktir.
+        </div>
+
+        <h2>Örnek Durum Senaryosu</h2>
+        <ul>
+            <li>Bir kullanıcı, oyuncuları belirli bir zaman diliminde alışveriş işlemleri tamamladıkları için ödüllendirmek istiyor.</li>
+            <li>Kullanıcı kurallar yönetim arayüzüne erişir ve <i>Alışveriş Tamamılamı Kuralı</i> kuralını bulur.</li>
+            <li>Kullanıcı, kuralın açıklamasını ve beklenen olay dizesini inceler ve kriterlere uyup uymadığını kontrol eder.</li>
+            <li>Değişiklik gerekirse, kullanıcı <b>Düzenle</b> işlemini tıklar, kuralı değiştirir ve değişiklikleri kaydeder.</li>
+            <li>Son olarak</li>
+        </ul>
+    </div>
+</body></html>

@@ -1,0 +1,101 @@
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinamik Veri Kullanım Kılavuzu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #eaeaea;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .example {
+            background: #f0f8ff;
+            border-left: 4px solid #007bff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .code {
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: monospace;
+            overflow: auto;
+        }
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dinamik Veri Kullanım Kılavuzu</h1>
+        
+        <h2>Temel Bileşenler</h2>
+        <ul>
+            <li><b>Dinamik Veri Başlığı:</b> Sayfa başlığını ve mevcut bölümü görüntüler.</li>
+            <li><b>Arama Filtreleri:</b> Kelime Arama, Kullanıcı ID'si ve Tarih seçimi için giriş alanları.</li>
+            <li><b>Veri Tablosu:</b> Kayıt ID'si ve Kullanıcı ID'si gibi çeşitli sütunlar içeren filtrelenmiş sonuçları barındırır.</li>
+            <li><b>Excel Geri Yükleme Butonu:</b> Kullanıcıların veri sonuçlarını bir Excel dosyasına aktarmasını sağlar.</li>
+        </ul>
+
+        <h2>Kullanım Talimatları</h2>
+        <div class="example">
+            <b>Adım 1:</b> Verileri filtrelemek için <code>Kelime Arama</code> alanını kullanarak anahtar kelimeleri girin.</div>
+            <div class="example">
+            <b>Adım 2:</b> Sonuçları filtrelemek istediğiniz belirli <code>Kullanıcı ID'sini</code> girin.</div>
+            <div class="example">
+            <b>Adım 3:</b> <code>Tarih Seçin</code> takvim seçeneğinden istediğiniz tarihi seçin.</div>
+            <div class="example">
+            <b>Adım 4:</b> Filtrelerinizi uygulamak için <button class="button">Filtrele</button> butonuna tıklayın.</div>
+
+        <h2>Özelliklerin Ayrıntılı Açıklaması</h2>
+        <ul>
+            <li><b>Kelime Arama:</b> Belirli anahtar kelimelere dayanan sonuçları filtrelemeye yardımcı olan bir metin girişi.</li>
+            <li><b>Kullanıcı ID'si:</b> Belirli kullanıcılara ait kayıtları filtrelemek için giriş alanı.</li>
+            <li><b>Tarih Seçin:</b> Veri kümesini filtrelemek için ilgili tarihi seçmek üzere tarih seçici.</li>
+            <li><b>Veri Tablosu Sütunları:</b> Kayıt ID'si, Eylem Türü, E-posta ve her giriş için diğer ilgili verileri içeren sütunları kapsar.</li>
+            <li><b>Excel İhraç Et:</b> Gösterilen filtrelenmiş kayıtları Excel formatında indirme özelliği.</li>
+        </ul>
+
+        <h2>Kullanım Senaryosu</h2>
+        <div class="example">
+            Bir kullanıcı sisteme giriş yapar ve belirli bir kullanıcı tarafından yapılan eylemleri gözden geçirmek ister. İlgili alana <code>Kullanıcı ID'sini</code> girer, ilgi duyduğu tarihi belirtir ve <code>Kelime Arama</code> kutusuna bir anahtar kelime girer. <button class="button">Filtrele</button> butonuna tıkladıktan sonra, veri tablosu yalnızca kriterlerine uyan ilgili kayıtları görüntülemek üzere güncellenir. Sonuçlardan memnun kaldıklarında kullanıcı, filtrelenmiş verileri daha fazla incelemek için <button class="button">Excel İhraç Et</button> butonuna tıklayabilir.</div>
+    </div>
+</body>
+</html>

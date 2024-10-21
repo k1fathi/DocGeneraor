@@ -1,0 +1,98 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Events User Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #eaeaea;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .example {
+            background: #f0f8ff;
+            border-left: 4px solid #007bff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .code {
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: monospace;
+            overflow: auto;
+        }
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Game Events User Guide</h1>
+        
+        <h2>Main Components</h2>
+        <ul>
+            <li><b>Select Date:</b> Input field to choose the date for event filtering.</li>
+            <li><b>Games:</b> Dropdown menu for selecting a specific game.</li>
+            <li><b>Filter Button:</b> Button to apply the selected filters.</li>
+            <li><b>Event Table:</b> Displays game events based on selected filters.</li>
+        </ul>
+
+        <h2>Usage Instructions</h2>
+        <ol>
+            <li>Choose the desired date from the <b>Select Date</b> field.</li>
+            <li>Select a game from the <b>Games</b> dropdown menu.</li>
+            <li>Click the <button class="button">Filter</button> button to view events.</li>
+            <li>If no events are found, a message will indicate that no game events are available.</li>
+        </ol>
+
+        <h2>Detailed Explanation of Features</h2>
+        <ul>
+            <li><b>Select Date:</b> This field requires a date in the format mm/dd/yyyy. It allows users to filter events by date.</li>
+            <li><b>Games:</b> This dropdown allows users to choose from a list of games. Selecting a game will impact the events displayed.</li>
+            <li><b>Event Table:</b> The table shows the filtered results. If no events match the criteria, the message "Game event not found." will appear.</li>
+        </ul>
+
+        <h2>Use Case Scenario</h2>
+        <div class="example">
+            <p>Once a user logs into the system, they navigate to the "Game Events" page. They enter "10/31/2023" in the <b>Select Date</b> field and choose "Game A" from the dropdown. After clicking the <button class="button">Filter</button>, they see a list of events related to "Game A" for the selected date. If there are no events for that date and game, they will be informed that no game events are found.</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Segmentler Kullanıcı Kılavuzu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background: #eaeaea;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .example {
+            background: #f0f8ff;
+            border-left: 4px solid #007bff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .code {
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: monospace;
+            overflow: auto;
+        }
+
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .button:hover {
+            background: #0056b3;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Segmentler Kullanıcı Kılavuzu</h1>
+
+        <h2>Ana Bileşenler</h2>
+        <ul>
+            <li><b>Segment No:</b> Her segment için kimlik.</li>
+            <li><b>Segment Adı:</b> Segment ile ilişkilendirilen isim.</li>
+            <li><b>Gerekli Puanlar:</b> Katılım için gerekli puanlar.</li>
+            <li><b>Ödül Puanı:</b> Tamamlandığında kazanılan puanlar.</li>
+            <li><b>Müşteri Sayısı:</b> Segmentteki müşteri sayısı.</li>
+            <li><b>Filtreler:</b> Gösterilen segmentleri daraltmak için kullanılır.</li>
+        </ul>
+
+        <h2>Kullanım Talimatları</h2>
+        <div class="example">
+            <h3>Yeni Bir Segment Ekleme:</h3>
+            <ol>
+                <li><button class="button">Ekle</button> butonuna tıklayın.</li>
+                <li>Sağlanan formda gerekli bilgileri doldurun.</li>
+                <li>Yeni bir segment oluşturmak için formu gönderin.</li>
+            </ol>
+        </div>
+
+        <h2>Özelliklerin Detaylı Açıklaması</h2>
+        <ul>
+            <li>
+                <b>Kelimelerle Arama:</b> Belirli segmentleri isimlerine göre hızlı bir şekilde bulmak için bir arama alanı.
+            </li>
+            <li>
+                <b>Filtre Aktif:</b> Sadece aktif veya pasif segmentleri görüntülemek için seçenekler.
+            </li>
+            <li>
+                <b>Filtre Silinmiş:</b> Silinmiş veya silinmemiş segmentleri görüntülemek için seçenekler.
+            </li>
+        </ul>
+
+        <h2>Kullanım Senaryosu</h2>
+        <div class="example">
+            <p>
+                Bir kullanıcı, ödül puanı 10'dan büyük olan belirli segmentleri bulmak istiyor. Segmentlerle ilgili anahtar kelimeleri girmek için 
+                <b>Kelimelerle Arama</b> alanını kullanabilir. Kullanıcı daha fazla filtrelemek isterse, yalnızca mevcut olan segmentleri görmek için 
+                <b>Aktif Olanlar</b> dropdown menüsünden <b>Sadece Aktif</b> seçebilir.
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ziele Verwaltung</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #eaeaea;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .example {
+            background: #f0f8ff;
+            border-left: 4px solid #007bff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .code {
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: monospace;
+            overflow: auto;
+        }
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ziele Verwaltung</h1>
+        <h2>Hauptkomponenten</h2>
+        <ul>
+            <li><b>Wortsuchfeld:</b> Ermöglicht es Benutzern, nach bestimmten Zielen zu suchen.</li>
+            <li><b>Filter:</b> Verwalten Sie die Sichtbarkeit von aktiven und gelöschten Zielen.</li>
+            <li><b>Ziel hinzufügen Schaltfläche:</b> Eine Schaltfläche zum Hinzufügen neuer Ziele zur Liste.</li>
+            <li><b>Ziel Liste:</b> Zeigt aktuelle Ziele zusammen mit Aktionen an.</li>
+        </ul>
+
+        <h2>Benutzungsanweisungen</h2>
+        <ul>
+            <li>Um nach einem Ziel zu suchen, geben Sie das Schlüsselwort in das <b>Wortsuchfeld</b> ein.</li>
+            <li>Wählen Sie geeignete Optionen in <b>Aktive Filter</b> und <b>Gelöschte Filter</b> aus, um Ihre Ziele zu verwalten.</li>
+            <li>Klicken Sie auf die <b>Hinzufügen</b> Schaltfläche, um ein neues Ziel zu erstellen.</li>
+            <li>Sehen Sie sich die bestehenden Ziele in der Liste unter den Filtern an.</li>
+        </ul>
+
+        <h2>Ausführliche Erklärung der Funktionen</h2>
+        <div class="example">
+            <h3>Aktionsschaltflächen</h3>
+            <p>Jedes Ziel in der Liste hat Aktionsschaltflächen:</p>
+            <ul>
+                <li><b>Bearbeiten:</b> Ermöglicht die Bearbeitung eines bestehenden Ziels.</li>
+                <li><b>Löschen:</b> Entfernt das Ziel aus der Liste.</li>
+            </ul>
+        </div>
+
+        <h2>Praktisches Beispiel</h2>
+        <div class="code">
+            <code>
+                1. Beginnen Sie, indem Sie „Kinderbekleidung“ im Wortsuchfeld eingeben.<br>
+                2. Wenden Sie Filter nur für aktive Ziele an.<br>
+                3. Klicken Sie auf das + Symbol, um ein neues Ziel hinzuzufügen.<br>
+                4. Bearbeiten Sie bestehende Ziele mit dem Stiftsymbol neben jedem Eintrag.<br>
+                5. Löschen Sie ein Ziel, indem Sie auf das Papierkorbsymbol klicken.
+            </code>
+        </div>
+
+        <!--<div class="actions">
+            <button class="button">Filtern</button>
+            <button class="button">Ziel hinzufügen</button>-->
+        </div>
+    </div>
+</body>
+</html>

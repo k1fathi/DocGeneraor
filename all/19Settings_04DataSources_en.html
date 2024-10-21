@@ -1,0 +1,112 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Sources User Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #eaeaea;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .example {
+            background: #f0f8ff;
+            border-left: 4px solid #007bff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .code {
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: monospace;
+            overflow: auto;
+        }
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Data Sources User Guide</h1>
+
+        <h2>Main Components</h2>
+        <ul>
+            <li><b>Data Source List:</b> Displayed items with details such as name, type, and status.</li>
+            <li><b>Actions Menu:</b> Buttons for editing and controlling data sources.</li>
+            <li><b>Search Box:</b> Field for searching through the data sources.</li>
+        </ul>
+
+        <h2>Usage Instructions</h2>
+        <div class="example">
+            To manage your data sources, follow these steps:
+        </div>
+        <ul>
+            <li>Use the <b>Search Box</b> to find specific data sources based on name or criteria.</li>
+            <li>Select a data source from the list to view its details.</li>
+            <li>Click on the <b>Edit</b> button to make changes to the selected data source.</li>
+            <li>Use the <b>+ Add</b> button to create new data sources.</li>
+            <li>Confirm your changes with the <b>Save</b> button.</li>
+        </ul>
+
+        <h2>Detailed Explanation of Features</h2>
+        <ul>
+            <li>
+                <b>Data Source Name:</b> The label indicating what the data source is for, ensuring clarity.
+            </li>
+            <li>
+                <b>Connector Type:</b> Defines the mechanism used to retrieve data, such as API, database, etc.
+            </li>
+            <li>
+                <b>Status:</b> Indicates whether the data source is active, inactive, or has issues.
+            </li>
+        </ul>
+
+        <h2>Use Case Scenario</h2>
+        <div class="example">
+            Example: Adding a New Data Source
+            <div class="code">
+                1. Click on <button class="button">+ Add</button>.<br>
+                2. Fill in the necessary fields: Name and Connector Type.<br>
+                3. Click on <button class="button">Save</button> to add the data source.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Übersicht der Szenarien</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #eaeaea;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .example {
+            background: #f0f8ff;
+            border-left: 4px solid #007bff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .code {
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: monospace;
+            overflow: auto;
+        }
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Übersicht der Szenarien</h1>
+        
+        <h2>Hauptkomponenten</h2>
+        <ul>
+            <li><b>Aufzeichnungsnummer</b>: Eindeutiger Identifikator für jedes Szenario.</li>
+            <li><b>Szenarioname</b>: Titel oder Name des Szenarios.</li>
+            <li><b>Kampagne</b>: Zugehörige Kampagne für das Szenario.</li>
+            <li><b>Aktionsart</b>: Art der Handlung im Szenario.</li>
+            <li><b>Aktionsauswahl</b>: Spezielle Auswahl, die mit der Handlung verbunden ist.</li>
+            <li><b>Aktion insgesamt</b>: Gesamtzahl der aufgezeichneten Aktionen.</li>
+            <li><b>Belohnungspunkt</b>: Punkte, die für das Szenario vergeben werden.</li>
+            <li><b>Ereignisnachricht</b>: Nachricht, die mit dem Ereignis verbunden ist.</li>
+        </ul>
+
+        <h2>Benutzungsanweisungen</h2>
+        <div class="example">
+            Um Szenarien zu filtern:
+            <ul>
+                <li>Verwende das <b>Wort-Suchfeld</b>, um nach bestimmten Szenarien zu suchen.</li>
+                <li>Wähle die Option <b>Aktive filtern</b>, um nur aktive Szenarien anzuzeigen.</li>
+                <li>Wähle <b>Gelöschte filtern</b>, um Szenarien anzuzeigen, die nicht gelöscht sind.</li>
+            </ul>
+        </div>
+
+        <h2>Detaillierte Erklärung der Funktionen</h2>
+        <ul>
+            <li><b>Suchfunktion</b>: Bietet eine Möglichkeit, Szenarien nach Schlüsselwörtern zu filtern.</li>
+            <li><b>Aktionsdetails</b>: Zeigt umfassende Details zu Aktionen, einschließlich Arten und Totals.</li>
+            <li><b>Schaltflächenoptionen</b>: Schaltflächen zum Hinzufügen neuer Szenarien und zum Ausführen von Aktionen bei bestehenden.</li>
+        </ul>
+
+        <h2>Praktisches Beispiel</h2>
+        <div class="example">
+            <b>Um ein neues Szenario hinzuzufügen:</b>
+            <div class="code">
+                1. Klicke auf die Schaltfläche <button class="button">Hinzufügen</button>.<br>
+                2. Fülle die relevanten Details für das Szenario aus.<br>
+                3. Klicke auf <button class="button">Speichern</button>, um das Szenario zu erstellen.
+            </div>
+        </div>
+        
+        <!--<div class="actions">
+            <button class="button">Filtern</button>
+            <button class="button">Zurücksetzen</button>-->
+        </div>
+    </div>
+</body>
+</html>

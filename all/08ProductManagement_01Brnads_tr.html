@@ -1,0 +1,118 @@
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markalar Yönetimi Kullanıcı Kılavuzu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #eaeaea;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .example {
+            background: #f0f8ff;
+            border-left: 4px solid #007bff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .code {
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: monospace;
+            overflow: auto;
+        }
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Markalar Yönetimi Kullanıcı Kılavuzu</h1>
+
+        <h2>Ana Bileşenler</h2>
+        <ul>
+            <li><b>ID</b>: Her marka için benzersiz tanımlayıcı.</li>
+            <li><b>Marka</b>: Listede gösterilen marka adı.</li>
+            <li><b>İşlemler</b>: Bir markayı düzenleme veya silme seçenekleri.</li>
+            <li><b>Ekle Butonu</b>: Yeni marka eklemek için erişim.</li>
+            <li><b>Arama Çubuğu</b>: Listede markaları aramak için giriş alanı.</li>
+            <li><b>Paginasyon</b>: Birden fazla marka sayfasında gezinme kontrolleri.</li>
+        </ul>
+
+        <h2>Kullanım Talimatları</h2>
+        <div class="example">
+            Markaları yönetmek için şu adımları izleyin:
+            <ul>
+                <li><b>Markaları Görüntüle</b>: Tablo, mevcut tüm markaları ve ID'lerini gösterir.</li>
+                <li><b>Yeni Marka Ekle</b>: <button class="button">Ekle</button> butonuna tıklayın.</li>
+                <li><b>Markayı Düzenle</b>: Düzenlemek istediğiniz markanın yanındaki düzenleme simgesine tıklayın.</li>
+                <li><b>Markayı Sil</b>: Silmek istediğiniz markanın yanındaki çöp kutusu simgesine tıklayın.</li>
+                <li><b>Markaları Ara</b>: Markaları filtrelemek için arama çubuğuna yazın.</li>
+            </ul>
+        </div>
+
+        <h2>Özelliklerin Ayrıntılı Açıklaması</h2>
+        <ul>
+            <li><b>ID</b>: Kolay izleme için otomatik olarak atanan numara.</li>
+            <li><b>Marka Adı</b>: Marka adını değiştirmek için düzenlenebilir alan.</li>
+            <li><b>İşlem Sembolleri</b>: 
+                <ul>
+                    <li>✏️ Düzenle: Marka bilgilerini değiştir.</li>
+                    <li>🗑️ Sil: Markayı listeden kaldır.</li>
+                    <li>🔄 Sıfırla: Markanın varsayılan ayarlarını geri yükle (varsa).</li>
+                </ul>
+            </li>
+            <li><b>Toplam Markalar</b>: Listelenen toplam marka sayısını gösterir.</li>
+            <li><b>Paginasyon Kontrolü</b>: Daha fazla marka görüntülemek için sayfalar arasında gezinme.</li>
+        </ul>
+
+        <h2>Kullanım Durumu Senaryosu</h2>
+        <div class="example">
+            Bir kullanıcı markalarını verimli bir şekilde yönetmek ister:
+            <ol>
+                <li>Markalar Yönetimi arayüzünü açın.</li>
+                <li>Kullanıcı mevcut markaların listesini görüntüler.</li>
+                <li>Yeni bir marka eklemek için kullanıcı <button class="button">Ekle</button> butonuna tıklar.</li>
+            </ol>
+        </div>
+
+    </div>
+</body>
+</html>
