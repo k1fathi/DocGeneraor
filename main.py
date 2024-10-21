@@ -11,13 +11,19 @@ from whoosh.fields import *
 from whoosh.qparser import QueryParser
 from bs4 import BeautifulSoup
 from datetime import datetime
+from flask_cors import CORS
 
 
 
 load_dotenv()
-
-app = Flask(__name__)
+app = Flask(__name__, static_folder='public', static_url_path='')
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+CORS(app)  # This enables CORS for all routes
+
+@app.route('/')
+def index():
+    return send_from_directory(app.static_folder, 'index.html')
 
 def analyze_image(image_file):
     image_base64 = base64.b64encode(image_file.read()).decode('utf-8')
@@ -185,7 +191,7 @@ index = create_in(index_dir, schema)
 
 # Index the HTML files in the "C:\K1\projects\zuzzuu_app\docs\New Docs" directory
 #docs_dir = os.path.join("C:", "K1", "projects", "zuzzuu_app", "docs", "New Docs")
-docs_dir = os.path.join("all")
+docs_dir = os.path.join("resource")
 for root, dirs, files in os.walk(docs_dir):
     for file in files:
         if file.endswith(".html"):
@@ -213,8 +219,8 @@ def search_html_files(directory, search_term):
 @app.route('/api/search', methods=['GET'])
 def search_endpoint():
     search_term = request.args.get('q')
-    #directory = request.args.get('dir', 'C:\\K1\\projects\\zuzzuu_app\\docs\\New Docs\\all')  # Default directory
-    directory = request.args.get('dir', 'all')  # Default directory
+    #directory = request.args.get('dir', 'C:\\K1\\projects\\zuzzuu_app\\docs\\New Docs\\resource')  # Default directory
+    directory = request.args.get('dir', 'resource')  # Default directory
     
     if not search_term:
         return jsonify({"error": "No search term provided"}), 400
@@ -226,8 +232,8 @@ def search_endpoint():
 def get_files():
     # Get the directory of the current script (main.py)
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    # Construct the path to the 'all' directory
-    directory = os.path.join(current_dir, 'all')
+    # Construct the path to the 'resource' directory
+    directory = os.path.join(current_dir, 'resource')
     
     files = []
     for filename in os.listdir(directory):
@@ -241,5 +247,16 @@ def get_files():
             })
     return jsonify(files)
 
+@app.route('/api/file/<filename>', methods=['GET'])
+def get_file_content(filename):
+    directory = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'resource')
+    file_path = os.path.join(directory, filename)
+    if os.path.exists(file_path):
+        with open(file_path, 'r', encoding='utf-8') as file:
+            content = file.read()
+        return jsonify({'content': content})
+    else:
+        return jsonify({'error': 'File not found'}), 404
+    
 if __name__ == '__main__':
     app.run(debug=True)
