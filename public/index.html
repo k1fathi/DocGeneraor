@@ -10,7 +10,7 @@
             padding: 0;
             height: 100%;
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0; /* Light gray background */
+            background-color: #f0f0f0;
         }
         .container {
             display: flex;
@@ -21,7 +21,31 @@
             background-color: #3498db;
             color: white;
             padding: 1rem;
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .header-item {
+            margin: 5px;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+        #searchInput {
+            padding: 0.5rem;
+            border-radius: 4px;
+            border: none;
+            margin-right: 5px;
+        }
+        #searchButton {
+            padding: 0.5rem;
+            border-radius: 4px;
+            border: none;
+            background-color: white;
+            color: #3498db;
+            cursor: pointer;
         }
         .content {
             display: flex;
@@ -30,7 +54,7 @@
         }
         .sidebar {
             width: 250px;
-            background-color: #ffffff; /* White background for sidebar */
+            background-color: #ffffff;
             overflow-y: auto;
             padding: 1rem;
             border-right: 1px solid #e0e0e0;
@@ -39,7 +63,7 @@
             flex: 1;
             padding: 1rem;
             overflow-y: auto;
-            background-color: #ffffff; /* White background for main content */
+            background-color: #ffffff;
         }
         .file-item {
             cursor: pointer;
@@ -47,9 +71,25 @@
             margin-bottom: 0.5rem;
             background-color: #e0e0e0;
             border-radius: 4px;
+            transition: background-color 0.3s ease;
         }
         .file-item:hover {
             background-color: #d0d0d0;
+        }
+        .file-item.selected {
+            background-color: #3498db;
+            color: white;
+        }
+        #languageSelector {
+            padding: 0.5rem;
+            border-radius: 4px;
+            border: none;
+            background-color: white;
+            color: #3498db;
+        }
+        .highlight {
+            background-color: yellow;
+            font-weight: bold;
         }
         @media (max-width: 768px) {
             .content {
@@ -61,13 +101,28 @@
                 border-right: none;
                 border-bottom: 1px solid #e0e0e0;
             }
+            header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .header-item {
+                margin: 5px 0;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>ZUZZUU Help Docs</h1>
+            <h1 class="header-item">ZUZZUU Help Docs</h1>
+            <div class="search-container header-item">
+                <input type="text" id="searchInput" placeholder="Search...">
+                <button id="searchButton">Search</button>
+            </div>
+            <select id="languageSelector" class="header-item">
+                <option value="en">English</option>
+                <option value="tr">Türkçe</option>
+            </select>
         </header>
         <div class="content">
             <div class="sidebar" id="fileList">
@@ -81,22 +136,48 @@
 
     <script>
         const API_BASE_URL = 'http://localhost:5000';
+        let currentLanguage = 'en';
+        let allFiles = [];
+        let selectedFile = null;
 
         function fetchFiles() {
             fetch(`${API_BASE_URL}/api/files`)
                 .then(response => response.json())
                 .then(files => {
-                    const fileList = document.getElementById('fileList');
-                    fileList.innerHTML = '';
-                    files.forEach(file => {
-                        const fileItem = document.createElement('div');
-                        fileItem.className = 'file-item';
-                        fileItem.textContent = file.name;
-                        fileItem.onclick = () => loadFileContent(file.name);
-                        fileList.appendChild(fileItem);
-                    });
+                    allFiles = files;
+                    displayFiles(files);
                 })
                 .catch(error => console.error('Error fetching files:', error));
+        }
+
+        function displayFiles(files) {
+            const fileList = document.getElementById('fileList');
+            fileList.innerHTML = '';
+            files.filter(file => file.name.endsWith(`_${currentLanguage}.html`))
+                 .forEach(file => {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item';
+                fileItem.textContent = file.name.replace(`_${currentLanguage}.html`, '');
+                fileItem.onclick = () => selectFile(file.name, fileItem);
+                if (file.name === selectedFile) {
+                    fileItem.classList.add('selected');
+                }
+                fileList.appendChild(fileItem);
+            });
+        }
+
+        function selectFile(filename, fileItem) {
+            // Remove 'selected' class from previously selected file
+            const previouslySelected = document.querySelector('.file-item.selected');
+            if (previouslySelected) {
+                previouslySelected.classList.remove('selected');
+            }
+
+            // Add 'selected' class to the clicked file
+            fileItem.classList.add('selected');
+
+            selectedFile = filename;
+            loadFileContent(filename);
         }
 
         function loadFileContent(filename) {
@@ -105,9 +186,60 @@
                 .then(data => {
                     const contentDiv = document.getElementById('fileContent');
                     contentDiv.innerHTML = data.content;
+                    highlightSearchTerm();
                 })
                 .catch(error => console.error('Error loading file content:', error));
         }
+
+        function searchFiles() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const matchingFiles = allFiles.filter(file => file.name.endsWith(`_${currentLanguage}.html`));
+            let foundMatch = false;
+
+            document.getElementById('fileList').innerHTML = '';
+
+            matchingFiles.forEach(file => {
+                fetch(`${API_BASE_URL}/api/file/${file.name}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.content.toLowerCase().includes(searchTerm)) {
+                            const fileItem = document.createElement('div');
+                            fileItem.className = 'file-item';
+                            fileItem.textContent = file.name.replace(`_${currentLanguage}.html`, '');
+                            fileItem.onclick = () => selectFile(file.name, fileItem);
+                            document.getElementById('fileList').appendChild(fileItem);
+
+                            if (!foundMatch) {
+                                selectFile(file.name, fileItem);
+                                foundMatch = true;
+                            }
+                        }
+                    })
+                    .catch(error => console.error('Error searching file:', error));
+            });
+        }
+
+        function highlightSearchTerm() {
+            const searchTerm = document.getElementById('searchInput').value;
+            if (!searchTerm) return;
+
+            const contentDiv = document.getElementById('fileContent');
+            const regex = new RegExp(searchTerm, 'gi');
+            contentDiv.innerHTML = contentDiv.innerHTML.replace(regex, match => `<span class="highlight">${match}</span>`);
+        }
+
+        document.getElementById('languageSelector').addEventListener('change', function() {
+            currentLanguage = this.value;
+            selectedFile = null;  // Reset selected file when language changes
+            fetchFiles();
+        });
+
+        document.getElementById('searchButton').addEventListener('click', searchFiles);
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchFiles();
+            }
+        });
 
         // Fetch files when the page loads
         window.onload = fetchFiles;
