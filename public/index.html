@@ -69,16 +69,38 @@
             cursor: pointer;
             padding: 0.5rem;
             margin-bottom: 0.5rem;
-            background-color: #e0e0e0;
             border-radius: 4px;
             transition: background-color 0.3s ease;
         }
         .file-item:hover {
-            background-color: #d0d0d0;
+            background-color: #e0e0e0;
         }
         .file-item.selected {
             background-color: #3498db;
             color: white;
+        }
+        .file-group {
+            margin-left: 15px;
+        }
+        .file-group-header {
+            cursor: pointer;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .file-group-header::before {
+            content: '▶';
+            display: inline-block;
+            margin-right: 5px;
+            transition: transform 0.3s ease;
+        }
+        .file-group.expanded > .file-group-header::before {
+            transform: rotate(90deg);
+        }
+        .file-group-content {
+            display: none;
+        }
+        .file-group.expanded > .file-group-content {
+            display: block;
         }
         #languageSelector {
             padding: 0.5rem;
@@ -153,29 +175,58 @@
         function displayFiles(files) {
             const fileList = document.getElementById('fileList');
             fileList.innerHTML = '';
+
+            const fileTree = {};
             files.filter(file => file.name.endsWith(`_${currentLanguage}.html`))
                  .forEach(file => {
-                const fileItem = document.createElement('div');
-                fileItem.className = 'file-item';
-                fileItem.textContent = file.name.replace(`_${currentLanguage}.html`, '');
-                fileItem.onclick = () => selectFile(file.name, fileItem);
-                if (file.name === selectedFile) {
-                    fileItem.classList.add('selected');
+                    const parts = file.name.replace(`_${currentLanguage}.html`, '').split('_');
+                    let currentLevel = fileTree;
+                    parts.forEach((part, index) => {
+                        if (!currentLevel[part]) {
+                            currentLevel[part] = index === parts.length - 1 ? file : {};
+                        }
+                        currentLevel = currentLevel[part];
+                    });
+                 });
+
+            function createFileTree(obj, parent) {
+                for (const key in obj) {
+                    if (typeof obj[key] === 'object' && !obj[key].name) {
+                        const group = document.createElement('div');
+                        group.className = 'file-group';
+                        const header = document.createElement('div');
+                        header.className = 'file-group-header';
+                        header.textContent = key;
+                        header.onclick = () => group.classList.toggle('expanded');
+                        group.appendChild(header);
+                        const content = document.createElement('div');
+                        content.className = 'file-group-content';
+                        group.appendChild(content);
+                        parent.appendChild(group);
+                        createFileTree(obj[key], content);
+                    } else {
+                        const file = obj[key];
+                        const fileItem = document.createElement('div');
+                        fileItem.className = 'file-item';
+                        fileItem.textContent = key;
+                        fileItem.onclick = () => selectFile(file.name, fileItem);
+                        if (file.name === selectedFile) {
+                            fileItem.classList.add('selected');
+                        }
+                        parent.appendChild(fileItem);
+                    }
                 }
-                fileList.appendChild(fileItem);
-            });
+            }
+
+            createFileTree(fileTree, fileList);
         }
 
         function selectFile(filename, fileItem) {
-            // Remove 'selected' class from previously selected file
             const previouslySelected = document.querySelector('.file-item.selected');
             if (previouslySelected) {
                 previouslySelected.classList.remove('selected');
             }
-
-            // Add 'selected' class to the clicked file
             fileItem.classList.add('selected');
-
             selectedFile = filename;
             loadFileContent(filename);
         }
@@ -205,7 +256,7 @@
                         if (data.content.toLowerCase().includes(searchTerm)) {
                             const fileItem = document.createElement('div');
                             fileItem.className = 'file-item';
-                            fileItem.textContent = file.name.replace(`_${currentLanguage}.html`, '');
+                            fileItem.textContent = file.name.replace(`_${currentLanguage}.html`, '').replace(/_/g, ' ');
                             fileItem.onclick = () => selectFile(file.name, fileItem);
                             document.getElementById('fileList').appendChild(fileItem);
 
@@ -230,7 +281,7 @@
 
         document.getElementById('languageSelector').addEventListener('change', function() {
             currentLanguage = this.value;
-            selectedFile = null;  // Reset selected file when language changes
+            selectedFile = null;
             fetchFiles();
         });
 
@@ -241,7 +292,6 @@
             }
         });
 
-        // Fetch files when the page loads
         window.onload = fetchFiles;
     </script>
 </body>

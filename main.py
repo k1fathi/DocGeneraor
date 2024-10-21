@@ -230,22 +230,32 @@ def search_endpoint():
 
 @app.route('/api/files', methods=['GET'])
 def get_files():
-    # Get the directory of the current script (main.py)
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    # Construct the path to the 'resource' directory
-    directory = os.path.join(current_dir, 'resource')
+    resource_dir = os.path.join(current_dir, 'resource')
     
-    files = []
-    for filename in os.listdir(directory):
-        if filename.endswith('.html'):
-            file_path = os.path.join(directory, filename)
-            created_timestamp = os.path.getctime(file_path)
-            created_date = datetime.fromtimestamp(created_timestamp).strftime('%Y-%m-%d %H:%M:%S')
-            files.append({
-                'name': filename,
-                'createdDate': created_date
-            })
+    files = {
+        'en': traverse_directory(os.path.join(resource_dir, 'EN')),
+        'tr': traverse_directory(os.path.join(resource_dir, 'TR'))
+    }
+    
     return jsonify(files)
+
+def traverse_directory(directory):
+    files = []
+    for root, dirs, filenames in os.walk(directory):
+        for filename in filenames:
+            if filename.endswith('.html'):
+                file_path = os.path.join(root, filename)
+                relative_path = os.path.relpath(file_path, directory)
+                created_timestamp = os.path.getctime(file_path)
+                created_date = datetime.fromtimestamp(created_timestamp).strftime('%Y-%m-%d %H:%M:%S')
+                files.append({
+                    'name': filename,
+                    'path': relative_path,
+                    'createdDate': created_date
+                })
+    return files
+
 
 @app.route('/api/file/<filename>', methods=['GET'])
 def get_file_content(filename):
