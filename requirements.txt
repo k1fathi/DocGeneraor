@@ -1,0 +1,7 @@
+flask
+openai
+python-dotenv
+requests
+whoosh
+beautifulsoup4
+shutil
