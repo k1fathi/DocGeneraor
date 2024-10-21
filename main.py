@@ -10,6 +10,8 @@ from whoosh.index import create_in, open_dir
 from whoosh.fields import *
 from whoosh.qparser import QueryParser
 from bs4 import BeautifulSoup
+from datetime import datetime
+
 
 
 load_dotenv()
@@ -230,7 +232,7 @@ def search_html_files(directory, search_term):
                         results.append(file_path)
     return results
 
-@app.route('/search', methods=['GET'])
+@app.route('/api/search', methods=['GET'])
 def search_endpoint():
     search_term = request.args.get('q')
     directory = request.args.get('dir', 'C:\\K1\\projects\\zuzzuu_app\\docs\\New Docs\\all')  # Default directory
@@ -240,6 +242,21 @@ def search_endpoint():
     
     results = search_html_files(directory, search_term)
     return jsonify({"results": results})
+
+@app.route('/api/files', methods=['GET'])
+def get_files():
+    directory = r"C:\K1\projects\zuzzuu_app\docs\New Docs\all"
+    files = []
+    for filename in os.listdir(directory):
+        if filename.endswith('.html'):
+            file_path = os.path.join(directory, filename)
+            created_timestamp = os.path.getctime(file_path)
+            created_date = datetime.fromtimestamp(created_timestamp).strftime('%Y-%m-%d %H:%M:%S')
+            files.append({
+                'name': filename,
+                'createdDate': created_date
+            })
+    return jsonify(files)
 
 if __name__ == '__main__':
     app.run(debug=True)

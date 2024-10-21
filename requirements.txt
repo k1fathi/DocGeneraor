@@ -1,7 +1,7 @@
-flask
+Flask==2.1.0
 openai
 python-dotenv
-requests
+requests==2.26.0
 whoosh
-beautifulsoup4
-shutil
+beautifulsoup4==4.10.0
+lxml==4.6.3
