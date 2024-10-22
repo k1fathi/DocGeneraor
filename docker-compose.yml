@@ -2,15 +2,18 @@ version: '3'
 
 services:
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "80:5000"  # Map to port 80 for HTTP access
+      - "80:5000"
     volumes:
       - ./public:/app/public
       - ./resource:/app/resource
     environment:
       - FLASK_ENV=production
-    restart: always
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
 
 networks:
   default:

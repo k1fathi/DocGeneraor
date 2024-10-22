@@ -19,9 +19,8 @@ load_dotenv()
 app = Flask(__name__, static_folder='public', static_url_path='')
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-CORS(app)  # This enables CORS for all routes
+CORS(app)
 
-# Serve index.html from public folder
 @app.route('/')
 def serve_index():
     return send_from_directory(app.static_folder, 'index.html')
@@ -380,4 +379,4 @@ def is_valid_file_path(file_path, resource_path):
     return os.path.abspath(file_path).startswith(os.path.abspath(resource_path))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
