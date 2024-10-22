@@ -343,7 +343,8 @@
         </div>
     </div>
       <script>
-        const API_BASE_URL = 'http://localhost:5000';
+        //const API_BASE_URL = ''; // Empty string for same-origin requests
+        const API_BASE_URL = window.location.origin;
         let currentLanguage = localStorage.getItem('selectedLanguage') || 'en';
         let allFiles = [];
         let selectedFile = null;
