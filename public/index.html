@@ -344,7 +344,7 @@
     </div>
       <script>
         const API_BASE_URL = 'http://localhost:5000';
-        let currentLanguage = 'en';
+        let currentLanguage = localStorage.getItem('selectedLanguage') || 'en';
         let allFiles = [];
         let selectedFile = null;
     
@@ -365,16 +365,30 @@
     }
 };
 
+        // Function to set language and update localStorage
+function setLanguage(lang) {
+    currentLanguage = lang;
+    localStorage.setItem('selectedLanguage', lang);
+    updateLanguage();
+    fetchFiles();
+}
+
 function updateLanguage() {
     const lang = translations[currentLanguage];
     const mainTitle = document.getElementById('mainTitle');
     const searchInput = document.getElementById('searchInput');
     const searchButton = document.getElementById('searchButton');
     const contentDiv = document.getElementById('fileContent');
+    const languageSelector = document.getElementById('languageSelector');
 
     if (mainTitle) mainTitle.textContent = lang.title;
     if (searchInput) searchInput.placeholder = lang.searchPlaceholder;
     if (searchButton) searchButton.textContent = lang.searchButton;
+    
+    // Update language selector to match stored language
+    if (languageSelector) {
+        languageSelector.value = currentLanguage;
+    }
 
     // Update welcome message if no content is loaded
     if (contentDiv && !selectedFile) {
@@ -386,7 +400,6 @@ function updateLanguage() {
         `;
     }
 }
-    
         function fetchFiles() {
             fetch(`${API_BASE_URL}/api/files?lang=${currentLanguage}`)
                 .then(response => response.json())
@@ -457,64 +470,71 @@ function updateLanguage() {
         }
     
         function loadFileContent(filepath) {
-            const url = `${API_BASE_URL}/api/file/${encodeURIComponent(filepath)}?lang=${currentLanguage}`;
-            
-            fetch(url)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    const contentDiv = document.getElementById('fileContent');
-                    if (contentDiv && data.content) {
-                        contentDiv.innerHTML = data.content;
-                        highlightSearchTerm();
-                    } else if (data.error) {
-                        throw new Error(data.error);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error loading file content:', error);
-                    const contentDiv = document.getElementById('fileContent');
-                    if (contentDiv) {
-                        contentDiv.innerHTML = `<div class="error-message">Error loading content: ${error.message}</div>`;
-                    }
-                });
-        }
+    const url = `${API_BASE_URL}/api/file/${encodeURIComponent(filepath)}?lang=${currentLanguage}`;
     
-        function searchFiles() {
-            const searchInput = document.getElementById('searchInput');
-            if (!searchInput) return;
-    
-            const searchTerm = searchInput.value.trim();
-            if (!searchTerm) {
-                displayFiles(allFiles);
-                return;
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
-    
-            // Use the new search endpoint
-            fetch(`${API_BASE_URL}/api/search?q=${encodeURIComponent(searchTerm)}&lang=${currentLanguage}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.results && data.results.length > 0) {
-                        displaySearchResults(data.results);
-                    } else {
-                        showNoResults(searchTerm);
-                    }
-                })
-                .catch(error => {
-                    console.error('Search error:', error);
-                    showSearchError(error.message);
-                });
-        }
-    
+            return response.json();
+        })
+        .then(data => {
+            const contentDiv = document.getElementById('fileContent');
+            if (contentDiv && data.content) {
+                contentDiv.innerHTML = `
+                    <div class="doc-content">
+                        ${data.content}
+                    </div>
+                `;
+                highlightSearchTerm();
+            } else if (data.error) {
+                throw new Error(data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error loading file content:', error);
+            const contentDiv = document.getElementById('fileContent');
+            if (contentDiv) {
+                contentDiv.innerHTML = `
+                    <div class="error-message">
+                        Error loading content: ${error.message}
+                    </div>
+                `;
+            }
+        });
+}
+
+// Make sure to update your search functionality to use the current language
+function searchFiles() {
+    const searchInput = document.getElementById('searchInput');
+    if (!searchInput) return;
+
+    const searchTerm = searchInput.value.trim();
+    if (!searchTerm) {
+        displayFiles(allFiles);
+        return;
+    }
+
+    fetch(`${API_BASE_URL}/api/search?q=${encodeURIComponent(searchTerm)}&lang=${currentLanguage}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.results && data.results.length > 0) {
+                displaySearchResults(data.results);
+            } else {
+                showNoResults(searchTerm);
+            }
+        })
+        .catch(error => {
+            console.error('Search error:', error);
+            showSearchError(error.message);
+        });
+}
         function displaySearchResults(results) {
             const fileList = document.getElementById('fileList');
             if (!fileList) return;
@@ -582,35 +602,35 @@ function updateLanguage() {
     
         // Event Listeners
         document.addEventListener('DOMContentLoaded', function() {
-            const languageSelector = document.getElementById('languageSelector');
-            const searchButton = document.getElementById('searchButton');
-            const searchInput = document.getElementById('searchInput');
-    
-            if (languageSelector) {
-                languageSelector.addEventListener('change', function() {
-                    currentLanguage = this.value;
-                    selectedFile = null;
-                    updateLanguage();
-                    fetchFiles();
-                });
-            }
-    
-            if (searchButton) {
-                searchButton.addEventListener('click', searchFiles);
-            }
-    
-            if (searchInput) {
-                searchInput.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') {
-                        searchFiles();
-                    }
-                });
-            }
-    
-            // Initialize the application
-            updateLanguage();
-            fetchFiles();
+    const languageSelector = document.getElementById('languageSelector');
+    const searchButton = document.getElementById('searchButton');
+    const searchInput = document.getElementById('searchInput');
+
+    if (languageSelector) {
+        // Set initial value from localStorage
+        languageSelector.value = currentLanguage;
+        
+        languageSelector.addEventListener('change', function() {
+            setLanguage(this.value);
         });
-    </script>
+    }
+
+    if (searchButton) {
+        searchButton.addEventListener('click', searchFiles);
+    }
+
+    if (searchInput) {
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchFiles();
+            }
+        });
+    }
+
+    // Initialize the application with stored language
+    updateLanguage();
+    fetchFiles();
+});
+      </script>
   </body>
-  </html>
+</html>
