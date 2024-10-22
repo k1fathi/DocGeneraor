@@ -6,3 +6,4 @@ whoosh
 beautifulsoup4==4.10.0
 lxml==4.6.3
 flask_cors
+gunicorn

@@ -4,9 +4,10 @@ services:
   web:
     build: .
     ports:
-      - "5000:5000"
+      - "80:5000"  # Map to port 80 for HTTP access
     volumes:
-      - .:/app
+      - ./public:/app/public
+      - ./resource:/app/resource
     environment:
       - FLASK_ENV=production
     restart: always

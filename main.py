@@ -1,7 +1,7 @@
 import os
 import base64
 import re
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from openai import OpenAI
 from dotenv import load_dotenv
 from whoosh.index import open_dir
@@ -21,8 +21,16 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 CORS(app)  # This enables CORS for all routes
 
+# Serve index.html from public folder
 @app.route('/')
-def index():
+def serve_index():
+    return send_from_directory(app.static_folder, 'index.html')
+
+# Serve static files from public folder
+@app.route('/<path:path>')
+def serve_static(path):
+    if os.path.exists(os.path.join(app.static_folder, path)):
+        return send_from_directory(app.static_folder, path)
     return send_from_directory(app.static_folder, 'index.html')
 
 def analyze_image(image_file):
