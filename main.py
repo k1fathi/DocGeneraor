@@ -216,57 +216,160 @@ def search_html_files(directory, search_term):
                         results.append(file_path)
     return results
 
+def get_files_for_language(language):
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    resource_dir = os.path.join(current_dir, 'resource', language)
+    
+    files = []
+    try:
+        # Walk through all subdirectories
+        for root, _, filenames in os.walk(resource_dir):
+            for filename in filenames:
+                if filename.endswith('.html'):
+                    file_path = os.path.join(root, filename)
+                    # Get relative path from the language directory
+                    relative_path = os.path.relpath(file_path, resource_dir)
+                    created_timestamp = os.path.getctime(file_path)
+                    created_date = datetime.fromtimestamp(created_timestamp).strftime('%Y-%m-%d %H:%M:%S')
+                    
+                    files.append({
+                        'name': filename,
+                        'path': relative_path.replace('\\', '/'),  # Ensure forward slashes for consistency
+                        'createdDate': created_date,
+                        'folder': os.path.dirname(relative_path).replace('\\', '/')  # Add folder path
+                    })
+    except Exception as e:
+        print(f"Error reading directory: {str(e)}")
+        return []
+
+    return files
+
+@app.route('/api/files', methods=['GET'])
+def api_get_files():
+    language = request.args.get('lang', 'en').lower()  # Default to English if no language specified
+    if language not in ['en', 'tr']:
+        return jsonify({"error": "Invalid language specified"}), 400
+    
+    files = get_files_for_language(language)
+    return jsonify(files)
+
+@app.route('/api/file/<path:filepath>', methods=['GET'])
+def get_file_content(filepath):
+    language = request.args.get('lang', 'en').lower()
+    if language not in ['en', 'tr']:
+        return jsonify({"error": "Invalid language specified"}), 400
+
+    try:
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        full_path = os.path.join(current_dir, 'resource', language, filepath)
+        
+        # Security check to prevent directory traversal
+        if not os.path.abspath(full_path).startswith(os.path.abspath(os.path.join(current_dir, 'resource'))):
+            return jsonify({"error": "Invalid file path"}), 403
+
+        if not os.path.exists(full_path):
+            return jsonify({"error": "File not found"}), 404
+
+        with open(full_path, 'r', encoding='utf-8') as file:
+            content = file.read()
+            return jsonify({"content": content})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 @app.route('/api/search', methods=['GET'])
 def search_endpoint():
     search_term = request.args.get('q')
-    #directory = request.args.get('dir', 'C:\\K1\\projects\\zuzzuu_app\\docs\\New Docs\\resource')  # Default directory
-    directory = request.args.get('dir', 'resource')  # Default directory
+    language = request.args.get('lang', 'en').lower()  # Default to English if not specified
     
     if not search_term:
         return jsonify({"error": "No search term provided"}), 400
     
-    results = search_html_files(directory, search_term)
+    if language not in ['en', 'tr']:
+        return jsonify({"error": "Invalid language specified"}), 400
+
+    # Get the absolute path to the language-specific resource directory
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    directory = os.path.join(current_dir, 'resource', language)
+    
+    results = search_html_files(directory, search_term, language)
     return jsonify({"results": results})
 
-@app.route('/api/files', methods=['GET'])
-def get_files():
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    resource_dir = os.path.join(current_dir, 'resource')
+def search_html_files(directory, search_term, language):
+    results = []
     
-    files = {
-        'en': traverse_directory(os.path.join(resource_dir, 'EN')),
-        'tr': traverse_directory(os.path.join(resource_dir, 'TR'))
-    }
-    
-    return jsonify(files)
+    try:
+        # Walk through all subdirectories in the language-specific folder
+        for root, _, files in os.walk(directory):
+            for filename in files:
+                if filename.endswith('.html'):
+                    file_path = os.path.join(root, filename)
+                    try:
+                        with open(file_path, 'r', encoding='utf-8') as f:
+                            content = f.read()
+                            # Use BeautifulSoup to extract text content without HTML tags
+                            soup = BeautifulSoup(content, 'html.parser')
+                            text_content = soup.get_text().lower()
+                            
+                            if search_term.lower() in text_content:
+                                # Get relative path from the language directory
+                                relative_path = os.path.relpath(file_path, directory)
+                                created_timestamp = os.path.getctime(file_path)
+                                created_date = datetime.fromtimestamp(created_timestamp).strftime('%Y-%m-%d %H:%M:%S')
+                                
+                                # Find a snippet of text around the search term
+                                snippet = get_text_snippet(text_content, search_term.lower())
+                                
+                                results.append({
+                                    'name': filename,
+                                    'path': relative_path.replace('\\', '/'),
+                                    'createdDate': created_date,
+                                    'folder': os.path.dirname(relative_path).replace('\\', '/'),
+                                    'snippet': snippet,
+                                    'language': language
+                                })
+                    except Exception as e:
+                        print(f"Error reading file {file_path}: {str(e)}")
+                        continue
+                        
+    except Exception as e:
+        print(f"Error searching directory: {str(e)}")
+        return []
+        
+    return results
 
-def traverse_directory(directory):
-    files = []
-    for root, dirs, filenames in os.walk(directory):
-        for filename in filenames:
-            if filename.endswith('.html'):
-                file_path = os.path.join(root, filename)
-                relative_path = os.path.relpath(file_path, directory)
-                created_timestamp = os.path.getctime(file_path)
-                created_date = datetime.fromtimestamp(created_timestamp).strftime('%Y-%m-%d %H:%M:%S')
-                files.append({
-                    'name': filename,
-                    'path': relative_path,
-                    'createdDate': created_date
-                })
-    return files
+def get_text_snippet(content, search_term, context_length=100):
+    """
+    Extract a snippet of text around the search term with some context.
+    """
+    try:
+        # Find the position of the search term
+        pos = content.lower().find(search_term.lower())
+        if pos == -1:
+            return ""
+        
+        # Calculate the start and end positions for the snippet
+        start = max(0, pos - context_length)
+        end = min(len(content), pos + len(search_term) + context_length)
+        
+        # Extract the snippet
+        snippet = content[start:end].strip()
+        
+        # Add ellipsis if we're not at the start/end of the content
+        if start > 0:
+            snippet = "..." + snippet
+        if end < len(content):
+            snippet = snippet + "..."
+            
+        return snippet
+        
+    except Exception as e:
+        print(f"Error creating snippet: {str(e)}")
+        return ""
 
+# Helper function to check if a file path is within the resource directory
+def is_valid_file_path(file_path, resource_path):
+    return os.path.abspath(file_path).startswith(os.path.abspath(resource_path))
 
-@app.route('/api/file/<filename>', methods=['GET'])
-def get_file_content(filename):
-    directory = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'resource')
-    file_path = os.path.join(directory, filename)
-    if os.path.exists(file_path):
-        with open(file_path, 'r', encoding='utf-8') as file:
-            content = file.read()
-        return jsonify({'content': content})
-    else:
-        return jsonify({'error': 'File not found'}), 404
-    
 if __name__ == '__main__':
     app.run(debug=True)

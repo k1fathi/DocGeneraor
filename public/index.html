@@ -6,17 +6,23 @@
     <title>ZUZZUU Help Docs</title>
     <style>
         body, html {
-            margin: 0;
-            padding: 0;
+            margin: 0 !important;
+            padding: 0 !important;
             height: 100%;
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
         }
-        .container {
+    
+        .base-container {
             display: flex;
             flex-direction: column;
-            height: 100%;
+            height: 100% !important;
+            width: 100% !important;
+            padding: 0  !important;
+            margin: 0  !important;
         }
+            
+        /* Header Styles */
         header {
             background-color: #3498db;
             color: white;
@@ -25,119 +31,295 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
+    
         .header-item {
             margin: 5px;
+            color:#fff
         }
-        .search-container {
+    
+        /* Search Styles */
+        .search-base-container {
             display: flex;
             align-items: center;
+            flex: 1;
+            max-width: 400px;
+            margin: 0 1rem;
         }
+        
+        .doc-content {
+            padding: 20px;
+            height: 100%;
+            overflow-y: auto;
+        }
+
         #searchInput {
             padding: 0.5rem;
             border-radius: 4px;
             border: none;
             margin-right: 5px;
+            flex: 1;
+            min-width: 200px;
+            transition: box-shadow 0.3s ease;
         }
+    
+        #searchInput:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3);
+        }
+    
         #searchButton {
-            padding: 0.5rem;
+            padding: 0.5rem 1rem;
             border-radius: 4px;
             border: none;
             background-color: white;
             color: #3498db;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
+    
+        #searchButton:hover {
+            background-color: #f8f9fa;
+            transform: translateY(-1px);
+        }
+    
+        /* Content Layout */
         .content {
             display: flex;
             flex: 1;
             overflow: hidden;
         }
+    
+        /* Sidebar Styles */
         .sidebar {
-            width: 250px;
+            width: 300px;
             background-color: #ffffff;
             overflow-y: auto;
             padding: 1rem;
             border-right: 1px solid #e0e0e0;
         }
-        .main-content {
-            flex: 1;
-            padding: 1rem;
-            overflow-y: auto;
-            background-color: #ffffff;
+    
+        /* Search Results Styles */
+        .search-result {
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1rem;
         }
+    
+        .file-name {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 0.25rem;
+        }
+    
+        .file-path {
+            font-size: 0.8em;
+            color: #7f8c8d;
+            margin-bottom: 0.5rem;
+        }
+    
+        .file-snippet {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 0.5rem;
+            padding-left: 1rem;
+            border-left: 3px solid #3498db;
+            background-color: #f8f9fa;
+            padding: 0.5rem;
+            border-radius: 0 4px 4px 0;
+        }
+    
+        /* File Tree Styles */
         .file-item {
             cursor: pointer;
             padding: 0.5rem;
             margin-bottom: 0.5rem;
             border-radius: 4px;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
         }
+    
         .file-item:hover {
-            background-color: #e0e0e0;
+            background-color: #f5f5f5;
+            transform: translateX(2px);
         }
+    
         .file-item.selected {
             background-color: #3498db;
             color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
+    
         .file-group {
             margin-left: 15px;
         }
+    
         .file-group-header {
             cursor: pointer;
             font-weight: bold;
             margin-bottom: 5px;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
         }
+    
+        .file-group-header:hover {
+            background-color: #f5f5f5;
+        }
+    
         .file-group-header::before {
-            content: '▶';
+            content: "▶";
             display: inline-block;
             margin-right: 5px;
             transition: transform 0.3s ease;
+            font-size: 0.8em;
         }
+    
         .file-group.expanded > .file-group-header::before {
             transform: rotate(90deg);
         }
+    
         .file-group-content {
             display: none;
+            padding-left: 1rem;
         }
+    
         .file-group.expanded > .file-group-content {
             display: block;
+            animation: slideDown 0.3s ease;
         }
+    
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            background-color: #ffffff;
+        }
+    
+        /* Language Selector Styles */
         #languageSelector {
             padding: 0.5rem;
             border-radius: 4px;
             border: none;
             background-color: white;
             color: #3498db;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
+    
+        #languageSelector:hover {
+            background-color: #f8f9fa;
+        }
+    
+        /* Highlight Styles */
         .highlight {
-            background-color: yellow;
+            background-color: #fff176;
+            padding: 0.1em 0.2em;
+            border-radius: 2px;
             font-weight: bold;
         }
+    
+        /* Status Messages */
+        .no-results, .search-error {
+            padding: 1rem;
+            text-align: center;
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+    
+        .no-results {
+            background-color: #f8f9fa;
+            color: #666;
+            border: 1px solid #dee2e6;
+        }
+    
+        .search-error {
+            background-color: #fff3f3;
+            color: #dc3545;
+            border: 1px solid #ffcdd2;
+        }
+    
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+    
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    
+        /* Responsive Design */
         @media (max-width: 768px) {
             .content {
                 flex-direction: column;
             }
+    
             .sidebar {
                 width: 100%;
-                max-height: 200px;
+                max-height: 300px;
                 border-right: none;
                 border-bottom: 1px solid #e0e0e0;
             }
+    
             header {
                 flex-direction: column;
                 align-items: stretch;
+                padding: 0.5rem;
             }
-            .header-item {
+    
+            .header-item{
                 margin: 5px 0;
+                color: #fff !important;
+            }
+
+            h1 {
+                color: #fff !important;
+            }
+            .search-base-container {
+                max-width: 100%;
+                margin: 0.5rem 0;
+            }
+    
+            .file-snippet {
+                padding: 0.5rem;
+                margin: 0.5rem 0;
+            }
+        }
+    
+        /* Print Styles */
+        @media print {
+            .sidebar, header {
+                display: none;
+            }
+    
+            .main-content {
+                padding: 0;
+                overflow: visible;
+            }
+    
+            .highlight {
+                background-color: transparent;
+                font-weight: normal;
             }
         }
     </style>
 </head>
-<body>
-    <div class="container">
+  <body>
+      <div class="base-container">
         <header>
-            <h1 class="header-item">ZUZZUU Help Docs</h1>
-            <div class="search-container header-item">
+            <h1 class="header-item" id="mainTitle">ZUZZUU Help Docs</h1>
+            <div class="search-base-container header-item">
                 <input type="text" id="searchInput" placeholder="Search...">
                 <button id="searchButton">Search</button>
             </div>
@@ -151,19 +333,62 @@
                 <!-- File list will be populated here -->
             </div>
             <div class="main-content" id="fileContent">
-                <!-- Selected file content will be displayed here -->
+                <!-- Content will be loaded here -->
+                <div class="doc-content">
+                    <!-- Initial welcome message or default content -->
+                    <h1>Welcome to ZUZZUU Help Documentation</h1>
+                    <p>Please select a topic from the menu on the left.</p>
+                </div>
             </div>
         </div>
     </div>
-
-    <script>
+      <script>
         const API_BASE_URL = 'http://localhost:5000';
         let currentLanguage = 'en';
         let allFiles = [];
         let selectedFile = null;
+    
+        const translations = {
+    en: {
+        title: "ZUZZUU Help Docs",
+        searchPlaceholder: "Search...",
+        searchButton: "Search",
+        welcomeTitle: "Welcome to ZUZZUU Help Documentation",
+        welcomeMessage: "Please select a topic from the menu on the left"
+    },
+    tr: {
+        title: "ZUZZUU Yardım Belgeleri",
+        searchPlaceholder: "Ara...",
+        searchButton: "Ara",
+        welcomeTitle: "ZUZZUU Yardım Belgelerine Hoş Geldiniz",
+        welcomeMessage: "Lütfen soldaki menüden bir konu seçin"
+    }
+};
 
+function updateLanguage() {
+    const lang = translations[currentLanguage];
+    const mainTitle = document.getElementById('mainTitle');
+    const searchInput = document.getElementById('searchInput');
+    const searchButton = document.getElementById('searchButton');
+    const contentDiv = document.getElementById('fileContent');
+
+    if (mainTitle) mainTitle.textContent = lang.title;
+    if (searchInput) searchInput.placeholder = lang.searchPlaceholder;
+    if (searchButton) searchButton.textContent = lang.searchButton;
+
+    // Update welcome message if no content is loaded
+    if (contentDiv && !selectedFile) {
+        contentDiv.innerHTML = `
+            <div class="doc-content">
+                <h1>${lang.welcomeTitle}</h1>
+                <p>${lang.welcomeMessage}</p>
+            </div>
+        `;
+    }
+}
+    
         function fetchFiles() {
-            fetch(`${API_BASE_URL}/api/files`)
+            fetch(`${API_BASE_URL}/api/files?lang=${currentLanguage}`)
                 .then(response => response.json())
                 .then(files => {
                     allFiles = files;
@@ -171,128 +396,221 @@
                 })
                 .catch(error => console.error('Error fetching files:', error));
         }
-
+    
         function displayFiles(files) {
             const fileList = document.getElementById('fileList');
+            if (!fileList) return;
             fileList.innerHTML = '';
-
+    
             const fileTree = {};
-            files.filter(file => file.name.endsWith(`_${currentLanguage}.html`))
-                 .forEach(file => {
-                    const parts = file.name.replace(`_${currentLanguage}.html`, '').split('_');
-                    let currentLevel = fileTree;
-                    parts.forEach((part, index) => {
-                        if (!currentLevel[part]) {
-                            currentLevel[part] = index === parts.length - 1 ? file : {};
-                        }
-                        currentLevel = currentLevel[part];
-                    });
-                 });
-
-            function createFileTree(obj, parent) {
-                for (const key in obj) {
-                    if (typeof obj[key] === 'object' && !obj[key].name) {
-                        const group = document.createElement('div');
-                        group.className = 'file-group';
-                        const header = document.createElement('div');
-                        header.className = 'file-group-header';
-                        header.textContent = key;
-                        header.onclick = () => group.classList.toggle('expanded');
-                        group.appendChild(header);
-                        const content = document.createElement('div');
-                        content.className = 'file-group-content';
-                        group.appendChild(content);
-                        parent.appendChild(group);
-                        createFileTree(obj[key], content);
-                    } else {
-                        const file = obj[key];
-                        const fileItem = document.createElement('div');
-                        fileItem.className = 'file-item';
-                        fileItem.textContent = key;
-                        fileItem.onclick = () => selectFile(file.name, fileItem);
-                        if (file.name === selectedFile) {
-                            fileItem.classList.add('selected');
-                        }
-                        parent.appendChild(fileItem);
+            files.forEach(file => {
+                const parts = file.path.split('/');
+                let currentLevel = fileTree;
+                parts.forEach((part, index) => {
+                    if (!currentLevel[part]) {
+                        currentLevel[part] = index === parts.length - 1 ? file : {};
                     }
-                }
-            }
-
+                    currentLevel = currentLevel[part];
+                });
+            });
+    
             createFileTree(fileTree, fileList);
         }
-
-        function selectFile(filename, fileItem) {
+    
+        function createFileTree(obj, parent) {
+            for (const key in obj) {
+                if (typeof obj[key] === 'object' && !obj[key].name) {
+                    const group = document.createElement('div');
+                    group.className = 'file-group';
+                    const header = document.createElement('div');
+                    header.className = 'file-group-header';
+                    header.textContent = key;
+                    header.onclick = () => group.classList.toggle('expanded');
+                    group.appendChild(header);
+                    const content = document.createElement('div');
+                    content.className = 'file-group-content';
+                    group.appendChild(content);
+                    parent.appendChild(group);
+                    createFileTree(obj[key], content);
+                } else {
+                    const file = obj[key];
+                    const fileItem = document.createElement('div');
+                    fileItem.className = 'file-item';
+                    fileItem.textContent = file.name.replace(`.html`, '');
+                    fileItem.onclick = () => selectFile(file.path, fileItem);
+                    if (file.path === selectedFile) {
+                        fileItem.classList.add('selected');
+                    }
+                    parent.appendChild(fileItem);
+                }
+            }
+        }
+    
+        function selectFile(filepath, fileItem) {
             const previouslySelected = document.querySelector('.file-item.selected');
             if (previouslySelected) {
                 previouslySelected.classList.remove('selected');
             }
             fileItem.classList.add('selected');
-            selectedFile = filename;
-            loadFileContent(filename);
+            selectedFile = filepath;
+            loadFileContent(filepath);
         }
-
-        function loadFileContent(filename) {
-            fetch(`${API_BASE_URL}/api/file/${filename}`)
-                .then(response => response.json())
+    
+        function loadFileContent(filepath) {
+            const url = `${API_BASE_URL}/api/file/${encodeURIComponent(filepath)}?lang=${currentLanguage}`;
+            
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
                 .then(data => {
                     const contentDiv = document.getElementById('fileContent');
-                    contentDiv.innerHTML = data.content;
-                    highlightSearchTerm();
+                    if (contentDiv && data.content) {
+                        contentDiv.innerHTML = data.content;
+                        highlightSearchTerm();
+                    } else if (data.error) {
+                        throw new Error(data.error);
+                    }
                 })
-                .catch(error => console.error('Error loading file content:', error));
+                .catch(error => {
+                    console.error('Error loading file content:', error);
+                    const contentDiv = document.getElementById('fileContent');
+                    if (contentDiv) {
+                        contentDiv.innerHTML = `<div class="error-message">Error loading content: ${error.message}</div>`;
+                    }
+                });
         }
-
+    
         function searchFiles() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const matchingFiles = allFiles.filter(file => file.name.endsWith(`_${currentLanguage}.html`));
-            let foundMatch = false;
-
-            document.getElementById('fileList').innerHTML = '';
-
-            matchingFiles.forEach(file => {
-                fetch(`${API_BASE_URL}/api/file/${file.name}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.content.toLowerCase().includes(searchTerm)) {
-                            const fileItem = document.createElement('div');
-                            fileItem.className = 'file-item';
-                            fileItem.textContent = file.name.replace(`_${currentLanguage}.html`, '').replace(/_/g, ' ');
-                            fileItem.onclick = () => selectFile(file.name, fileItem);
-                            document.getElementById('fileList').appendChild(fileItem);
-
-                            if (!foundMatch) {
-                                selectFile(file.name, fileItem);
-                                foundMatch = true;
-                            }
-                        }
-                    })
-                    .catch(error => console.error('Error searching file:', error));
+            const searchInput = document.getElementById('searchInput');
+            if (!searchInput) return;
+    
+            const searchTerm = searchInput.value.trim();
+            if (!searchTerm) {
+                displayFiles(allFiles);
+                return;
+            }
+    
+            // Use the new search endpoint
+            fetch(`${API_BASE_URL}/api/search?q=${encodeURIComponent(searchTerm)}&lang=${currentLanguage}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.results && data.results.length > 0) {
+                        displaySearchResults(data.results);
+                    } else {
+                        showNoResults(searchTerm);
+                    }
+                })
+                .catch(error => {
+                    console.error('Search error:', error);
+                    showSearchError(error.message);
+                });
+        }
+    
+        function displaySearchResults(results) {
+            const fileList = document.getElementById('fileList');
+            if (!fileList) return;
+            
+            fileList.innerHTML = `<h3>${translations[currentLanguage].searchButton}:</h3>`;
+            
+            results.forEach(result => {
+                const resultDiv = document.createElement('div');
+                resultDiv.className = 'search-result';
+                
+                resultDiv.innerHTML = `
+                    <div class="file-item" onclick="selectFile('${result.path}', this)">
+                        <div class="file-name">${result.name}</div>
+                        <div class="file-path">${result.folder || ''}</div>
+                        ${result.snippet ? `<div class="file-snippet">${result.snippet}</div>` : ''}
+                    </div>
+                `;
+                
+                fileList.appendChild(resultDiv);
             });
+            
+            if (results.length > 0) {
+                const firstResult = document.querySelector('.file-item');
+                if (firstResult) {
+                    selectFile(results[0].path, firstResult);
+                }
+            }
         }
-
+    
+        function showNoResults(searchTerm) {
+            const fileList = document.getElementById('fileList');
+            if (fileList) {
+                fileList.innerHTML = `
+                    <div class="no-results">
+                        ${translations[currentLanguage].noResults} "${searchTerm}"
+                    </div>
+                `;
+            }
+        }
+    
+        function showSearchError(errorMessage) {
+            const fileList = document.getElementById('fileList');
+            if (fileList) {
+                fileList.innerHTML = `
+                    <div class="search-error">
+                        ${translations[currentLanguage].searchError}: ${errorMessage}
+                    </div>
+                `;
+            }
+        }
+    
         function highlightSearchTerm() {
-            const searchTerm = document.getElementById('searchInput').value;
-            if (!searchTerm) return;
-
+            const searchInput = document.getElementById('searchInput');
             const contentDiv = document.getElementById('fileContent');
+            if (!searchInput || !contentDiv) return;
+    
+            const searchTerm = searchInput.value.trim();
+            if (!searchTerm) return;
+    
             const regex = new RegExp(searchTerm, 'gi');
-            contentDiv.innerHTML = contentDiv.innerHTML.replace(regex, match => `<span class="highlight">${match}</span>`);
+            contentDiv.innerHTML = contentDiv.innerHTML.replace(regex, match => 
+                `<span class="highlight">${match}</span>`
+            );
         }
-
-        document.getElementById('languageSelector').addEventListener('change', function() {
-            currentLanguage = this.value;
-            selectedFile = null;
+    
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            const languageSelector = document.getElementById('languageSelector');
+            const searchButton = document.getElementById('searchButton');
+            const searchInput = document.getElementById('searchInput');
+    
+            if (languageSelector) {
+                languageSelector.addEventListener('change', function() {
+                    currentLanguage = this.value;
+                    selectedFile = null;
+                    updateLanguage();
+                    fetchFiles();
+                });
+            }
+    
+            if (searchButton) {
+                searchButton.addEventListener('click', searchFiles);
+            }
+    
+            if (searchInput) {
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        searchFiles();
+                    }
+                });
+            }
+    
+            // Initialize the application
+            updateLanguage();
             fetchFiles();
         });
-
-        document.getElementById('searchButton').addEventListener('click', searchFiles);
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                searchFiles();
-            }
-        });
-
-        window.onload = fetchFiles;
     </script>
-</body>
-</html>
+  </body>
+  </html>
