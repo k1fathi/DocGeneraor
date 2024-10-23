@@ -12,12 +12,19 @@ from whoosh.qparser import QueryParser
 from bs4 import BeautifulSoup
 from datetime import datetime
 from flask_cors import CORS
+import logging
+from datetime import datetime
+from pathlib import Path
 
 
 
 load_dotenv()
 app = Flask(__name__, static_folder='public', static_url_path='')
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 CORS(app)
 
@@ -223,7 +230,7 @@ def search_html_files(directory, search_term):
                         results.append(file_path)
     return results
 
-def get_files_for_language(language):
+def get_files_for_language1(language):
     current_dir = os.path.dirname(os.path.abspath(__file__))
     resource_dir = os.path.join(current_dir, 'resource', language)
     
@@ -250,6 +257,71 @@ def get_files_for_language(language):
         return []
 
     return files
+
+def get_files_for_language(language):
+    try:
+        # Use Path for better cross-platform compatibility
+        current_dir = Path(__file__).resolve().parent
+        resource_dir = current_dir / 'resource' / language
+
+        # Check if directory exists
+        if not resource_dir.exists():
+            logger.error(f"Directory not found: {resource_dir}")
+            return []
+
+        files = []
+        # Walk through directory
+        for file_path in resource_dir.rglob('*.html'):
+            try:
+                # Get relative path from resource directory
+                relative_path = file_path.relative_to(resource_dir)
+                
+                # Get file creation time
+                created_timestamp = os.path.getctime(str(file_path))
+                created_date = datetime.fromtimestamp(created_timestamp).strftime('%Y-%m-%d %H:%M:%S')
+                
+                # Create file info dictionary
+                file_info = {
+                    'name': file_path.name,
+                    'path': str(relative_path).replace('\\', '/'),
+                    'createdDate': created_date,
+                    'folder': str(relative_path.parent).replace('\\', '/') if relative_path.parent != Path('.') else ''
+                }
+                
+                files.append(file_info)
+                logger.info(f"Found file: {file_info['path']}")
+                
+            except Exception as e:
+                logger.error(f"Error processing file {file_path}: {str(e)}")
+                continue
+
+        # Sort files by folder and name
+        files.sort(key=lambda x: (x['folder'], x['name']))
+        
+        logger.info(f"Total files found: {len(files)}")
+        return files
+
+    except Exception as e:
+        logger.error(f"Error scanning directory: {str(e)}")
+        return []
+
+# Example debugging function
+def debug_directory_structure(language):
+    try:
+        current_dir = Path(__file__).resolve().parent
+        resource_dir = current_dir / 'resource' / language
+        
+        logger.info(f"Current directory: {current_dir}")
+        logger.info(f"Resource directory: {resource_dir}")
+        logger.info(f"Resource directory exists: {resource_dir.exists()}")
+        
+        if resource_dir.exists():
+            logger.info("Directory contents:")
+            for item in resource_dir.rglob('*'):
+                logger.info(f"  {item.relative_to(resource_dir)}")
+    
+    except Exception as e:
+        logger.error(f"Error debugging directory structure: {str(e)}")
 
 @app.route('/api/files', methods=['GET'])
 def api_get_files():
