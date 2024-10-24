@@ -1,807 +1,901 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ZUZZUU Help Docs</title>
     <style>
-        body, html {
-            margin: 0 !important;
-            padding: 0 !important;
-            height: 100%;
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-        }
-    
-        .base-container {
-            display: flex;
-            flex-direction: column;
-            height: 100% !important;
-            width: 100% !important;
-            padding: 0  !important;
-            margin: 0  !important;
-        }
-            
-        /* Header Styles */
-        header {
-            background-color: #3498db;
-            color: white;
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-    
-        .header-item {
-            margin: 5px;
-            color:#FFF
-        }
-    
-        /* Search Styles */
-        .search-base-container {
-            display: flex;
-            align-items: center;
-            flex: 1;
-            max-width: 400px;
-            margin: 0 1rem;
-        }
-        
-        .doc-content {
-            padding: 20px;
-            height: 100%;
-            overflow-y: auto;
-        }
+      body,
+      html {
+        margin: 0 !important;
+        padding: 0 !important;
+        height: 100%;
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+      }
 
-        #searchInput {
-            padding: 0.5rem;
-            border-radius: 4px;
-            border: none;
-            margin-right: 5px;
-            flex: 1;
-            min-width: 200px;
-            transition: box-shadow 0.3s ease;
-        }
-    
-        #searchInput:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3);
-        }
-    
-        #searchButton {
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            border: none;
-            background-color: white;
-            color: #3498db;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-    
-        #searchButton:hover {
-            background-color: #f8f9fa;
-            transform: translateY(-1px);
-        }
-    
-        /* Content Layout */
-        .content {
-            display: flex;
-            flex: 1;
-            overflow: hidden;
-        }
-    
-        /* Sidebar Styles */
-        .sidebar {
-            width: 300px;
-            background-color: #ffffff;
-            overflow-y: auto;
-            padding: 1rem;
-            border-right: 1px solid #e0e0e0;
-        }
-    
-        /* Search Results Styles */
-        .search-result {
-            margin-bottom: 1rem;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 1rem;
-        }
-    
-        .file-name {
-            font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 0.25rem;
-        }
-    
-        .file-path {
-            font-size: 0.8em;
-            color: #7f8c8d;
-            margin-bottom: 0.5rem;
-        }
-    
-        .file-snippet {
-            font-size: 0.9em;
-            color: #666;
-            margin-top: 0.5rem;
-            padding-left: 1rem;
-            border-left: 3px solid #3498db;
-            background-color: #f8f9fa;
-            padding: 0.5rem;
-            border-radius: 0 4px 4px 0;
-        }
-    
-        /* File Tree Styles */
-        .file-item {
-            cursor: pointer;
-            padding: 0.5rem;
-            margin-bottom: 0.5rem;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-    
-        .file-item:hover {
-            background-color: #f5f5f5;
-            transform: translateX(2px);
-        }
-    
-        .file-item.selected {
-            background-color: #3498db;
-            color: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-    
-        .file-group {
-            margin-left: 15px;
-        }
-    
-        .file-group-header {
-            cursor: pointer;
-            font-weight: bold;
-            margin-bottom: 5px;
-            padding: 0.5rem;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-        }
-    
-        .file-group-header:hover {
-            background-color: #f5f5f5;
-        }
-    
-        .file-group-header::before {
-            content: "▶";
-            display: inline-block;
-            margin-right: 5px;
-            transition: transform 0.3s ease;
-            font-size: 0.8em;
-        }
-    
-        .file-group.expanded > .file-group-header::before {
-            transform: rotate(90deg);
-        }
-    
-        .file-group-content {
-            display: none;
-            padding-left: 1rem;
-        }
-    
-        .file-group.expanded > .file-group-content {
-            display: block;
-            animation: slideDown 0.3s ease;
-        }
-    
-        /* Main Content Styles */
-        .main-content {
-            flex: 1;
-            padding: 1.5rem;
-            overflow-y: auto;
-            background-color: #ffffff;
-        }
-    
-        /* Language Selector Styles */
-        #languageSelector {
-            padding: 0.5rem;
-            border-radius: 4px;
-            border: none;
-            background-color: white;
-            color: #3498db;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-    
-        #languageSelector:hover {
-            background-color: #f8f9fa;
-        }
-    
-        /* Highlight Styles */
-        .highlight {
-            background-color: #fff176;
-            padding: 0.1em 0.2em;
-            border-radius: 2px;
-            font-weight: bold;
-        }
-    
-        /* Status Messages */
-        .no-results, .search-error {
-            padding: 1rem;
-            text-align: center;
-            border-radius: 4px;
-            margin: 1rem 0;
-        }
-    
-        .no-results {
-            background-color: #f8f9fa;
-            color: #666;
-            border: 1px solid #dee2e6;
-        }
-    
-        .search-error {
-            background-color: #fff3f3;
-            color: #dc3545;
-            border: 1px solid #ffcdd2;
-        }
-    
-        /* Loading State */
-        .loading {
-            text-align: center;
-            padding: 2rem;
-            color: #666;
-        }
-    
-        /* Animations */
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .content {
-                flex-direction: column;
-            }
-    
-            .sidebar {
-                width: 100%;
-                max-height: 300px;
-                border-right: none;
-                border-bottom: 1px solid #e0e0e0;
-            }
-    
-            header {
-                flex-direction: column;
-                align-items: stretch;
-                padding: 0.5rem;
-            }
-    
-            .header-item{
-                margin: 5px 0;
-                color: #FFF !important;
-            }
+      .base-container {
+        display: flex;
+        flex-direction: column;
+        height: 100% !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
 
-            h1 {
-                color: #fff !important;
-            }
-            .search-base-container {
-                max-width: 100%;
-                margin: 0.5rem 0;
-            }
-    
-            .file-snippet {
-                padding: 0.5rem;
-                margin: 0.5rem 0;
-            }
-        }
-    
-        /* Print Styles */
-        @media print {
-            .sidebar, header {
-                display: none;
-            }
-    
-            .main-content {
-                padding: 0;
-                overflow: visible;
-            }
-    
-            .highlight {
-                background-color: transparent;
-                font-weight: normal;
-            }
-        }
-        /* Add these new styles to your existing CSS */
-
-.header-left {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.hamburger-menu {
-    display: none;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-    padding: 5px;
-}
-
-.mobile-menu {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-}
-
-.mobile-menu-content {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 80%;
-    max-width: 300px;
-    height: 100%;
-    background-color: white;
-    overflow-y: auto;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
-}
-
-.mobile-menu.active {
-    display: block;
-}
-
-.mobile-menu.active .mobile-menu-content {
-    transform: translateX(0);
-}
-
-@media (max-width: 768px) {
-    .hamburger-menu {
-        display: block;
-    }
-
-    .sidebar {
-        display: none;
-    }
-
-    header {
-        flex-direction: row;
+      /* Header Styles */
+      header {
+        background-color: #3498db;
+        color: white;
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         flex-wrap: wrap;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .header-item {
+        margin: 5px;
+        color: #fff;
+      }
+
+      /* Search Styles */
+      .search-base-container {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        max-width: 400px;
+        margin: 0 1rem;
+      }
+
+      .doc-content {
+        padding: 20px;
+        height: 100%;
+        overflow-y: auto;
+      }
+
+      #searchInput {
         padding: 0.5rem;
-    }
+        border-radius: 4px;
+        border: none;
+        margin-right: 5px;
+        flex: 1;
+        min-width: 200px;
+        transition: box-shadow 0.3s ease;
+      }
 
-    .header-right {
-        width: 100%;
-        flex-direction: column;
-        align-items: stretch;
+      #searchInput:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3);
+      }
+
+      #searchButton {
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        border: none;
+        background-color: white;
+        color: #3498db;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      #searchButton:hover {
+        background-color: #f8f9fa;
+        transform: translateY(-1px);
+      }
+
+      /* Content Layout */
+      .content {
+        display: flex;
+        flex: 1;
+        overflow: hidden;
+      }
+
+      /* Sidebar Styles */
+      .sidebar {
+        width: 300px;
+        background-color: #ffffff;
+        overflow-y: auto;
+        padding: 1rem;
+        border-right: 1px solid #e0e0e0;
+      }
+
+      /* Search Results Styles */
+      .search-result {
+        margin-bottom: 1rem;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 1rem;
+      }
+
+      .file-name {
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 0.25rem;
+      }
+
+      .file-path {
+        font-size: 0.8em;
+        color: #7f8c8d;
+        margin-bottom: 0.5rem;
+      }
+
+      .file-snippet {
+        font-size: 0.9em;
+        color: #666;
         margin-top: 0.5rem;
-    }
+        padding-left: 1rem;
+        border-left: 3px solid #3498db;
+        background-color: #f8f9fa;
+        padding: 0.5rem;
+        border-radius: 0 4px 4px 0;
+      }
 
-    .search-base-container {
+      /* File Tree Styles */
+      .file-item {
+        cursor: pointer;
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+      }
+
+      .file-item:hover {
+        background-color: #f5f5f5;
+        transform: translateX(2px);
+      }
+
+      .file-item.selected {
+        background-color: #3498db;
+        color: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .file-group {
+        margin-left: 15px;
+      }
+
+      .file-group-header {
+        cursor: pointer;
+        font-weight: bold;
+        margin-bottom: 5px;
+        padding: 0.5rem;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+      }
+
+      .file-group-header:hover {
+        background-color: #f5f5f5;
+      }
+
+      .file-group-header::before {
+        content: "▶";
+        display: inline-block;
+        margin-right: 5px;
+        transition: transform 0.3s ease;
+        font-size: 0.8em;
+      }
+
+      .file-group.expanded > .file-group-header::before {
+        transform: rotate(90deg);
+      }
+
+      .file-group-content {
+        display: none;
+        padding-left: 1rem;
+      }
+
+      .file-group.expanded > .file-group-content {
+        display: block;
+        animation: slideDown 0.3s ease;
+      }
+
+      /* Main Content Styles */
+      .main-content {
+        flex: 1;
+        padding: 1.5rem;
+        overflow-y: auto;
+        background-color: #ffffff;
+      }
+
+      /* Language Selector Styles */
+      #languageSelector {
+        padding: 0.5rem;
+        border-radius: 4px;
+        border: none;
+        background-color: white;
+        color: #3498db;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      #languageSelector:hover {
+        background-color: #f8f9fa;
+      }
+
+      /* Highlight Styles */
+      .highlight {
+        background-color: #fff176;
+        padding: 0.1em 0.2em;
+        border-radius: 2px;
+        font-weight: bold;
+      }
+
+      /* Status Messages */
+      .no-results,
+      .search-error {
+        padding: 1rem;
+        text-align: center;
+        border-radius: 4px;
+        margin: 1rem 0;
+      }
+
+      .no-results {
+        background-color: #f8f9fa;
+        color: #666;
+        border: 1px solid #dee2e6;
+      }
+
+      .search-error {
+        background-color: #fff3f3;
+        color: #dc3545;
+        border: 1px solid #ffcdd2;
+      }
+
+      /* Loading State */
+      .loading {
+        text-align: center;
+        padding: 2rem;
+        color: #666;
+      }
+
+      /* Animations */
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .content {
+          flex-direction: column;
+        }
+
+        .sidebar {
+          width: 100%;
+          max-height: 300px;
+          border-right: none;
+          border-bottom: 1px solid #e0e0e0;
+        }
+
+        header {
+          flex-direction: column;
+          align-items: stretch;
+          padding: 0.5rem;
+        }
+
+        .header-item {
+          margin: 5px 0;
+          color: #fff !important;
+        }
+
+        h1 {
+          color: #fff !important;
+        }
+        .search-base-container {
+          max-width: 100%;
+          margin: 0.5rem 0;
+        }
+
+        .file-snippet {
+          padding: 0.5rem;
+          margin: 0.5rem 0;
+        }
+      }
+
+      /* Print Styles */
+      @media print {
+        .sidebar,
+        header {
+          display: none;
+        }
+
+        .main-content {
+          padding: 0;
+          overflow: visible;
+        }
+
+        .highlight {
+          background-color: transparent;
+          font-weight: normal;
+        }
+      }
+      /* Add these new styles to your existing CSS */
+
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .hamburger-menu {
+        display: none;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 5px;
+      }
+
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 100%;
-        margin: 0.5rem 0;
-    }
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+      }
 
-    #languageSelector {
-        width: 100%;
-        margin: 0.5rem 0;
-    }
+      .mobile-menu-content {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 80%;
+        max-width: 300px;
+        height: 100%;
+        background-color: white;
+        overflow-y: auto;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+      }
 
-    .content {
-        flex-direction: column;
-    }
+      .mobile-menu.active {
+        display: block;
+      }
 
-    .main-content {
-        width: 100%;
-    }
-}
+      .mobile-menu.active .mobile-menu-content {
+        transform: translateX(0);
+      }
+
+      @media (max-width: 768px) {
+        .hamburger-menu {
+          display: block;
+        }
+
+        .sidebar {
+          display: none;
+        }
+
+        header {
+          flex-direction: row;
+          flex-wrap: wrap;
+          padding: 0.5rem;
+        }
+
+        .header-right {
+          width: 100%;
+          flex-direction: column;
+          align-items: stretch;
+          margin-top: 0.5rem;
+        }
+
+        .search-base-container {
+          width: 100%;
+          margin: 0.5rem 0;
+        }
+
+        #languageSelector {
+          width: 100%;
+          margin: 0.5rem 0;
+        }
+
+        .content {
+          flex-direction: column;
+        }
+
+        .main-content {
+          width: 100%;
+        }
+      }
     </style>
-</head>
+  </head>
   <body>
-      <div class="base-container">
-        <header>
-            <div class="header-left">
-                <button id="menuToggle" class="hamburger-menu">☰</button>
-                <h1 class="header-item" id="mainTitle">ZUZZUU Help Docs</h1>
-            </div>
-            <div class="header-right">
-                <div class="search-base-container header-item">
-                    <input type="text" id="searchInput" placeholder="Search...">
-                    <button id="searchButton">Search</button>
-                </div>
-                <select id="languageSelector" class="header-item" style="color:#333 !important">
-                    <option value="en">English</option>
-                    <option value="tr">Türkçe</option>
-                </select>
-            </div>
-        </header>
-        <!-- Add a mobile menu overlay -->
-<div id="mobileMenu" class="mobile-menu">
-    <div class="mobile-menu-content">
-        <div id="mobileSidebar"></div>
-    </div>
-</div>
-        <div class="content">
-            <div class="sidebar" id="fileList">
-                <!-- File list will be populated here -->
-            </div>
-            <div class="main-content" id="fileContent">
-                <!-- Content will be loaded here -->
-                <div class="doc-content">
-                    <!-- Initial welcome message or default content -->
-                    <h1>Welcome to ZUZZUU Help Documentation</h1>
-                    <p>Please select a topic from the menu on the left.</p>
-                </div>
-            </div>
+    <div class="base-container">
+      <header>
+        <div class="header-left">
+          <button id="menuToggle" class="hamburger-menu">☰</button>
+          <h1 class="header-item" id="mainTitle">ZUZZUU Help Docs</h1>
         </div>
+        <div class="header-right">
+          <div class="search-base-container header-item">
+            <input type="text" id="searchInput" placeholder="Search..." />
+            <button id="searchButton">Search</button>
+          </div>
+          <select
+            id="languageSelector"
+            class="header-item"
+            style="color: #333 !important"
+          >
+            <option value="en">English</option>
+            <option value="tr">Türkçe</option>
+          </select>
+        </div>
+      </header>
+      <!-- Add a mobile menu overlay -->
+      <div id="mobileMenu" class="mobile-menu">
+        <div class="mobile-menu-content">
+          <div id="mobileSidebar"></div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="sidebar" id="fileList">
+          <!-- File list will be populated here -->
+        </div>
+        <div class="main-content" id="fileContent">
+          <!-- Content will be loaded here -->
+          <div class="doc-content">
+            <!-- Initial welcome message or default content -->
+            <h1>Welcome to ZUZZUU Help Documentation</h1>
+            <p>Please select a topic from the menu on the left.</p>
+          </div>
+        </div>
+      </div>
     </div>
-      <script>
-        const API_BASE_URL = ''; // Empty string for same-origin requests
-        //const API_BASE_URL = 'http://localhost:5000'; // Empty string for same-origin requests
-        //const API_BASE_URL = window.location.origin;
-        let currentLanguage = localStorage.getItem('selectedLanguage') || 'en';
-        let allFiles = [];
-        let selectedFile = null;
-    
-        const translations = {
-    en: {
-        title: "ZUZZUU Help Docs",
-        searchPlaceholder: "Search...",
-        searchButton: "Search",
-        welcomeTitle: "Welcome to ZUZZUU Help Documentation",
-        welcomeMessage: "Please select a topic from the menu on the left"
-    },
-    tr: {
-        title: "ZUZZUU Yardım Belgeleri",
-        searchPlaceholder: "Ara...",
-        searchButton: "Ara",
-        welcomeTitle: "ZUZZUU Yardım Belgelerine Hoş Geldiniz",
-        welcomeMessage: "Lütfen soldaki menüden bir konu seçin"
-    }
-};
+    <script>
+      let API_BASE_URL = "";
 
-        // Function to set language and update localStorage
-function setLanguage(lang) {
-    currentLanguage = lang;
-    localStorage.setItem('selectedLanguage', lang);
-    updateLanguage();
-    fetchFiles();
-}
+      if (window.location.port === "5500") {
+        API_BASE_URL = "http://localhost:5000";
+      }
+      let currentLanguage = localStorage.getItem("selectedLanguage") || "en";
+      let allFiles = [];
+      let selectedFile = null;
 
-function updateLanguage() {
-    const lang = translations[currentLanguage];
-    const mainTitle = document.getElementById('mainTitle');
-    const searchInput = document.getElementById('searchInput');
-    const searchButton = document.getElementById('searchButton');
-    const contentDiv = document.getElementById('fileContent');
-    const languageSelector = document.getElementById('languageSelector');
+      const translations = {
+        en: {
+          title: "ZUZZUU Help Docs",
+          searchPlaceholder: "Search...",
+          searchButton: "Search",
+          welcomeTitle: "Welcome to ZUZZUU Help Documentation",
+          welcomeMessage: "Please select a topic from the menu on the left",
+        },
+        tr: {
+          title: "ZUZZUU Yardım Belgeleri",
+          searchPlaceholder: "Ara...",
+          searchButton: "Ara",
+          welcomeTitle: "ZUZZUU Yardım Belgelerine Hoş Geldiniz",
+          welcomeMessage: "Lütfen soldaki menüden bir konu seçin",
+        },
+      };
 
-    if (mainTitle) mainTitle.textContent = lang.title;
-    if (searchInput) searchInput.placeholder = lang.searchPlaceholder;
-    if (searchButton) searchButton.textContent = lang.searchButton;
-    
-    // Update language selector to match stored language
-    if (languageSelector) {
-        languageSelector.value = currentLanguage;
-    }
+      // Function to set language and update localStorage
+      function setLanguage(lang) {
+        currentLanguage = lang;
+        localStorage.setItem("selectedLanguage", lang);
+        updateLanguage();
+        fetchFiles();
+      }
 
-    // Update welcome message if no content is loaded
-    if (contentDiv && !selectedFile) {
-        contentDiv.innerHTML = `
+      function updateLanguage() {
+        const lang = translations[currentLanguage];
+        const mainTitle = document.getElementById("mainTitle");
+        const searchInput = document.getElementById("searchInput");
+        const searchButton = document.getElementById("searchButton");
+        const contentDiv = document.getElementById("fileContent");
+        const languageSelector = document.getElementById("languageSelector");
+
+        if (mainTitle) mainTitle.textContent = lang.title;
+        if (searchInput) searchInput.placeholder = lang.searchPlaceholder;
+        if (searchButton) searchButton.textContent = lang.searchButton;
+
+        // Update language selector to match stored language
+        if (languageSelector) {
+          languageSelector.value = currentLanguage;
+        }
+
+        // Update welcome message if no content is loaded
+        if (contentDiv && !selectedFile) {
+          contentDiv.innerHTML = `
             <div class="doc-content">
                 <h1>${lang.welcomeTitle}</h1>
                 <p>${lang.welcomeMessage}</p>
             </div>
         `;
-    }
-}
-        function fetchFiles() {
-            fetch(`${API_BASE_URL}/api/files?lang=${currentLanguage}`)
-                .then(response => response.json())
-                .then(files => {
-                    allFiles = files;
-                    displayFiles(files);
-                })
-                .catch(error => console.error('Error fetching files:', error));
         }
-    
-        function displayFiles(files) {
-            const fileList = document.getElementById('fileList');
-            if (!fileList) return;
-            fileList.innerHTML = '';
-    
-            const fileTree = {};
-            files.forEach(file => {
-                const parts = file.path.split('/');
-                let currentLevel = fileTree;
-                parts.forEach((part, index) => {
-                    if (!currentLevel[part]) {
-                        currentLevel[part] = index === parts.length - 1 ? file : {};
-                    }
-                    currentLevel = currentLevel[part];
-                });
-            });
-    
-            createFileTree(fileTree, fileList);
-        }
-    
-        function createFileTree(obj, parent) {
-            for (const key in obj) {
-                if (typeof obj[key] === 'object' && !obj[key].name) {
-                    const group = document.createElement('div');
-                    group.className = 'file-group';
-                    const header = document.createElement('div');
-                    header.className = 'file-group-header';
-                    header.textContent = key;
-                    header.onclick = () => group.classList.toggle('expanded');
-                    group.appendChild(header);
-                    const content = document.createElement('div');
-                    content.className = 'file-group-content';
-                    group.appendChild(content);
-                    parent.appendChild(group);
-                    createFileTree(obj[key], content);
-                } else {
-                    const file = obj[key];
-                    const fileItem = document.createElement('div');
-                    fileItem.className = 'file-item';
-                    fileItem.textContent = file.name.replace(`.html`, '');
-                    fileItem.onclick = () => selectFile(file.path, fileItem);
-                    if (file.path === selectedFile) {
-                        fileItem.classList.add('selected');
-                    }
-                    parent.appendChild(fileItem);
-                }
+      }
+
+      function fetchFiles() {
+        fetch(`${API_BASE_URL}/api/files?lang=${currentLanguage}`)
+          .then((response) => response.json())
+          .then((files) => {
+            allFiles = files;
+            displayFiles(files);
+          })
+          .catch((error) => console.error("Error fetching files:", error));
+      }
+
+      function displayFiles(files) {
+        const fileList = document.getElementById("fileList");
+        if (!fileList) return;
+        fileList.innerHTML = "";
+
+        const fileTree = {};
+        files.forEach((file) => {
+          const parts = file.path.split("/");
+          let currentLevel = fileTree;
+          parts.forEach((part, index) => {
+            if (!currentLevel[part]) {
+              currentLevel[part] = index === parts.length - 1 ? file : {};
             }
-        }
-    
-        function selectFile(filepath, fileItem) {
-            const previouslySelected = document.querySelector('.file-item.selected');
-            if (previouslySelected) {
-                previouslySelected.classList.remove('selected');
+            currentLevel = currentLevel[part];
+          });
+        });
+
+        createFileTree(fileTree, fileList);
+      }
+
+      function createFileTree(obj, parent) {
+        for (const key in obj) {
+          if (typeof obj[key] === "object" && !obj[key].name) {
+            const group = document.createElement("div");
+            group.className = "file-group";
+            const header = document.createElement("div");
+            header.className = "file-group-header";
+            header.textContent = key;
+            header.onclick = () => group.classList.toggle("expanded");
+            group.appendChild(header);
+            const content = document.createElement("div");
+            content.className = "file-group-content";
+            group.appendChild(content);
+            parent.appendChild(group);
+            createFileTree(obj[key], content);
+          } else {
+            const file = obj[key];
+            const fileItem = document.createElement("div");
+            fileItem.className = "file-item";
+            fileItem.textContent = file.name.replace(`.html`, "");
+            fileItem.onclick = () => selectFile(file.path, fileItem);
+            if (file.path === selectedFile) {
+              fileItem.classList.add("selected");
             }
-            fileItem.classList.add('selected');
-            selectedFile = filepath;
-            loadFileContent(filepath);
+            parent.appendChild(fileItem);
+          }
         }
-    
-        function loadFileContent(filepath) {
-    const url = `${API_BASE_URL}/api/file/${encodeURIComponent(filepath)}?lang=${currentLanguage}`;
-    
-    fetch(url)
-        .then(response => {
+      }
+
+      function loadFileContent(filepath) {
+        const url = `${API_BASE_URL}/api/file/${encodeURIComponent(
+          filepath
+        )}?lang=${currentLanguage}`;
+
+        fetch(url)
+          .then((response) => {
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+              throw new Error(`HTTP error! status: ${response.status}`);
             }
             return response.json();
-        })
-        .then(data => {
-            const contentDiv = document.getElementById('fileContent');
+          })
+          .then((data) => {
+            const contentDiv = document.getElementById("fileContent");
             if (contentDiv && data.content) {
-                contentDiv.innerHTML = `
+              contentDiv.innerHTML = `
                     <div class="doc-content">
                         ${data.content}
                     </div>
                 `;
-                highlightSearchTerm();
+              highlightSearchTerm();
             } else if (data.error) {
-                throw new Error(data.error);
+              throw new Error(data.error);
             }
-        })
-        .catch(error => {
-            console.error('Error loading file content:', error);
-            const contentDiv = document.getElementById('fileContent');
+          })
+          .catch((error) => {
+            console.error("Error loading file content:", error);
+            const contentDiv = document.getElementById("fileContent");
             if (contentDiv) {
-                contentDiv.innerHTML = `
+              contentDiv.innerHTML = `
                     <div class="error-message">
                         Error loading content: ${error.message}
                     </div>
                 `;
             }
-        });
-}
+          });
+      }
 
-// Make sure to update your search functionality to use the current language
-function searchFiles() {
-    const searchInput = document.getElementById('searchInput');
-    if (!searchInput) return;
+      // Update selectFile function to close mobile menu after selection
+      function selectFile(filepath, fileItem) {
+        const previouslySelected = document.querySelector(
+          ".file-item.selected"
+        );
+        if (previouslySelected) {
+          previouslySelected.classList.remove("selected");
+        }
+        fileItem.classList.add("selected");
+        selectedFile = filepath;
+        loadFileContent(filepath);
 
-    const searchTerm = searchInput.value.trim();
-    if (!searchTerm) {
-        displayFiles(allFiles);
-        return;
-    }
+        // Close mobile menu after selection
+        const mobileMenu = document.getElementById("mobileMenu");
+        mobileMenu.classList.remove("active");
+      }
+      
+      // Make sure to update your search functionality to use the current language
+      function searchFiles() {
+        const searchInput = document.getElementById("searchInput");
+        if (!searchInput) return;
 
-    fetch(`${API_BASE_URL}/api/search?q=${encodeURIComponent(searchTerm)}&lang=${currentLanguage}`)
-        .then(response => {
+        const searchTerm = searchInput.value.trim();
+        if (!searchTerm) {
+          displayFiles(allFiles);
+          return;
+        }
+
+        fetch(
+          `${API_BASE_URL}/api/search?q=${encodeURIComponent(
+            searchTerm
+          )}&lang=${currentLanguage}`
+        )
+          .then((response) => {
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+              throw new Error(`HTTP error! status: ${response.status}`);
             }
             return response.json();
-        })
-        .then(data => {
+          })
+          .then((data) => {
             if (data.results && data.results.length > 0) {
-                displaySearchResults(data.results);
+              displaySearchResults(data.results);
             } else {
-                showNoResults(searchTerm);
+              showNoResults(searchTerm);
             }
-        })
-        .catch(error => {
-            console.error('Search error:', error);
+          })
+          .catch((error) => {
+            console.error("Search error:", error);
             showSearchError(error.message);
-        });
-}
-        function displaySearchResults(results) {
-            const fileList = document.getElementById('fileList');
-            if (!fileList) return;
-            
-            fileList.innerHTML = `<h3>${translations[currentLanguage].searchButton}:</h3>`;
-            
-            results.forEach(result => {
-                const resultDiv = document.createElement('div');
-                resultDiv.className = 'search-result';
-                
-                resultDiv.innerHTML = `
-                    <div class="file-item" onclick="selectFile('${result.path}', this)">
+          });
+      }
+
+      function displaySearchResults(results) {
+        const fileList = document.getElementById("fileList");
+        if (!fileList) return;
+
+        fileList.innerHTML = `<h3>${translations[currentLanguage].searchButton}:</h3>`;
+
+        results.forEach((result) => {
+          const resultDiv = document.createElement("div");
+          resultDiv.className = "search-result";
+
+          resultDiv.innerHTML = `
+                    <div class="file-item" onclick="selectFile('${
+                      result.path
+                    }', this)">
                         <div class="file-name">${result.name}</div>
-                        <div class="file-path">${result.folder || ''}</div>
-                        ${result.snippet ? `<div class="file-snippet">${result.snippet}</div>` : ''}
+                        <div class="file-path">${result.folder || ""}</div>
+                        ${
+                          result.snippet
+                            ? `<div class="file-snippet">${result.snippet}</div>`
+                            : ""
+                        }
                     </div>
                 `;
-                
-                fileList.appendChild(resultDiv);
-            });
-            
-            if (results.length > 0) {
-                const firstResult = document.querySelector('.file-item');
-                if (firstResult) {
-                    selectFile(results[0].path, firstResult);
-                }
-            }
+
+          fileList.appendChild(resultDiv);
+        });
+
+        if (results.length > 0) {
+          const firstResult = document.querySelector(".file-item");
+          if (firstResult) {
+            selectFile(results[0].path, firstResult);
+          }
         }
-    
-        function showNoResults(searchTerm) {
-            const fileList = document.getElementById('fileList');
-            if (fileList) {
-                fileList.innerHTML = `
+      }
+
+      function showNoResults(searchTerm) {
+        const fileList = document.getElementById("fileList");
+        if (fileList) {
+          fileList.innerHTML = `
                     <div class="no-results">
                         ${translations[currentLanguage].noResults} "${searchTerm}"
                     </div>
                 `;
-            }
         }
-    
-        function showSearchError(errorMessage) {
-            const fileList = document.getElementById('fileList');
-            if (fileList) {
-                fileList.innerHTML = `
+      }
+
+      function showSearchError(errorMessage) {
+        const fileList = document.getElementById("fileList");
+        if (fileList) {
+          fileList.innerHTML = `
                     <div class="search-error">
                         ${translations[currentLanguage].searchError}: ${errorMessage}
                     </div>
                 `;
-            }
         }
-    
-        function highlightSearchTerm() {
-            const searchInput = document.getElementById('searchInput');
-            const contentDiv = document.getElementById('fileContent');
-            if (!searchInput || !contentDiv) return;
-    
-            const searchTerm = searchInput.value.trim();
-            if (!searchTerm) return;
-    
-            const regex = new RegExp(searchTerm, 'gi');
-            contentDiv.innerHTML = contentDiv.innerHTML.replace(regex, match => 
-                `<span class="highlight">${match}</span>`
-            );
+      }
+
+      function highlightSearchTerm() {
+        const searchInput = document.getElementById("searchInput");
+        const contentDiv = document.getElementById("fileContent");
+        if (!searchInput || !contentDiv) return;
+
+        const searchTerm = searchInput.value.trim();
+        if (!searchTerm) return;
+
+        const regex = new RegExp(searchTerm, "gi");
+        contentDiv.innerHTML = contentDiv.innerHTML.replace(
+          regex,
+          (match) => `<span class="highlight">${match}</span>`
+        );
+      }
+
+      function initializeMobileMenu() {
+        const menuToggle = document.getElementById("menuToggle");
+        const mobileMenu = document.getElementById("mobileMenu");
+        const mobileSidebar = document.getElementById("mobileSidebar");
+        const sidebar = document.getElementById("fileList");
+
+        function attachMobileEventListeners() {
+          // Handle folder headers
+          mobileSidebar
+            .querySelectorAll(".file-group-header")
+            .forEach((header) => {
+              header.onclick = (e) => {
+                e.stopPropagation();
+                const group = header.closest(".file-group");
+                group.classList.toggle("expanded");
+              };
+            });
+
+          // Handle file items
+          mobileSidebar.querySelectorAll(".file-item").forEach((item) => {
+            item.onclick = (e) => {
+              e.stopPropagation();
+              let filepath =
+                item.getAttribute("data-path") || item.textContent + ".html";
+              const fileGroups = Array.from(
+                mobileSidebar.querySelectorAll(".file-group")
+              );
+              const parentGroup = item.closest(".file-group");
+
+              if (parentGroup) {
+                const folders = [];
+                let currentGroup = parentGroup;
+                while (currentGroup) {
+                  const header =
+                    currentGroup.querySelector(".file-group-header");
+                  if (header) {
+                    folders.unshift(header.textContent);
+                  }
+                  currentGroup =
+                    currentGroup.parentElement.closest(".file-group");
+                }
+                if (!item.getAttribute("data-path")) {
+                  filepath = folders.join("/") + "/" + filepath;
+                }
+              }
+
+              selectFile(filepath, item);
+              mobileMenu.classList.remove("active");
+            };
+          });
         }
-    
-        // Event Listeners
-        document.addEventListener('DOMContentLoaded', function() {
-    const languageSelector = document.getElementById('languageSelector');
-    const searchButton = document.getElementById('searchButton');
-    const searchInput = document.getElementById('searchInput');
 
-    if (languageSelector) {
-        // Set initial value from localStorage
-        languageSelector.value = currentLanguage;
-        
-        languageSelector.addEventListener('change', function() {
-            setLanguage(this.value);
-        });
-    }
+        function updateMobileSidebar() {
+          // Clone the sidebar content
+          mobileSidebar.innerHTML = sidebar.innerHTML;
 
-    if (searchButton) {
-        searchButton.addEventListener('click', searchFiles);
-    }
-
-    if (searchInput) {
-        searchInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                searchFiles();
-            }
-        });
-    }
-
-    // Initialize the application with stored language
-    updateLanguage();
-    fetchFiles();
-});
-      // Add this to your existing JavaScript
-function initializeMobileMenu() {
-    const menuToggle = document.getElementById('menuToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileSidebar = document.getElementById('mobileSidebar');
-    const sidebar = document.getElementById('fileList');
-
-    // Clone sidebar content for mobile menu
-    function updateMobileSidebar() {
-        mobileSidebar.innerHTML = sidebar.innerHTML;
-        // Reattach event listeners to cloned elements
-        mobileSidebar.querySelectorAll('.file-item').forEach(item => {
-            const originalItem = Array.from(sidebar.querySelectorAll('.file-item'))
-                .find(original => original.textContent === item.textContent);
+          // Store file paths
+          mobileSidebar.querySelectorAll(".file-item").forEach((item) => {
+            const originalItem = Array.from(
+              sidebar.querySelectorAll(".file-item")
+            ).find((original) => original.textContent === item.textContent);
             if (originalItem) {
-                item.onclick = originalItem.onclick;
+              const filepath = originalItem.onclick
+                .toString()
+                .match(/selectFile\('([^']+)'/)?.[1];
+              if (filepath) {
+                item.setAttribute("data-path", filepath);
+              }
             }
-        });
-    }
+          });
 
-    menuToggle.addEventListener('click', () => {
-        mobileMenu.classList.toggle('active');
-        updateMobileSidebar();
-    });
+          // Attach event listeners
+          attachMobileEventListeners();
 
-    // Close menu when clicking outside
-    mobileMenu.addEventListener('click', (e) => {
-        if (e.target === mobileMenu) {
-            mobileMenu.classList.remove('active');
+          // Preserve expanded state
+          const expandedGroups = sidebar.querySelectorAll(
+            ".file-group.expanded"
+          );
+          expandedGroups.forEach((group) => {
+            const headerText =
+              group.querySelector(".file-group-header").textContent;
+            const mobileGroup = Array.from(
+              mobileSidebar.querySelectorAll(".file-group")
+            ).find(
+              (mGroup) =>
+                mGroup.querySelector(".file-group-header").textContent ===
+                headerText
+            );
+            if (mobileGroup) {
+              mobileGroup.classList.add("expanded");
+            }
+          });
         }
-    });
 
-    // Update mobile sidebar when content changes
-    const observer = new MutationObserver(() => {
-        if (mobileMenu.classList.contains('active')) {
+        // Toggle mobile menu
+        menuToggle.addEventListener("click", () => {
+          mobileMenu.classList.toggle("active");
+          if (mobileMenu.classList.contains("active")) {
             updateMobileSidebar();
+          }
+        });
+
+        // Close menu when clicking outside
+        mobileMenu.addEventListener("click", (e) => {
+          if (e.target === mobileMenu) {
+            mobileMenu.classList.remove("active");
+          }
+        });
+
+        // Watch for changes in the main sidebar
+        const observer = new MutationObserver(() => {
+          if (mobileMenu.classList.contains("active")) {
+            updateMobileSidebar();
+          }
+        });
+
+        observer.observe(sidebar, {
+          childList: true,
+          subtree: true,
+          attributes: true,
+          attributeFilter: ["class"],
+        });
+      }
+
+      // Modify your DOMContentLoaded event listener to:
+      document.addEventListener("DOMContentLoaded", function () {
+        const languageSelector = document.getElementById("languageSelector");
+        const searchButton = document.getElementById("searchButton");
+        const searchInput = document.getElementById("searchInput");
+
+        if (languageSelector) {
+          languageSelector.value = currentLanguage;
+          languageSelector.addEventListener("change", function () {
+            setLanguage(this.value);
+          });
         }
-    });
 
-    observer.observe(sidebar, { childList: true, subtree: true });
-}
+        if (searchButton) {
+          searchButton.addEventListener("click", searchFiles);
+        }
 
-// Add this to your DOMContentLoaded event listener
-document.addEventListener('DOMContentLoaded', function() {
-    // ... your existing code ...
-    initializeMobileMenu();
-});
+        if (searchInput) {
+          searchInput.addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+              searchFiles();
+            }
+          });
+        }
 
-// Update selectFile function to close mobile menu after selection
-function selectFile(filepath, fileItem) {
-    const previouslySelected = document.querySelector('.file-item.selected');
-    if (previouslySelected) {
-        previouslySelected.classList.remove('selected');
-    }
-    fileItem.classList.add('selected');
-    selectedFile = filepath;
-    loadFileContent(filepath);
-    
-    // Close mobile menu after selection
-    const mobileMenu = document.getElementById('mobileMenu');
-    mobileMenu.classList.remove('active');
-}
-      </script>
+        // Initialize mobile menu first
+        initializeMobileMenu();
+
+        // Then initialize the application
+        updateLanguage();
+        fetchFiles();
+      });
+    </script>
   </body>
 </html>
