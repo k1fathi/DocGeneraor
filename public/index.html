@@ -36,7 +36,7 @@
     
         .header-item {
             margin: 5px;
-            color:#fff
+            color:#FFF
         }
     
         /* Search Styles */
@@ -280,7 +280,7 @@
     
             .header-item{
                 margin: 5px 0;
-                color: #fff !important;
+                color: #FFF !important;
             }
 
             h1 {
@@ -313,21 +313,128 @@
                 font-weight: normal;
             }
         }
+        /* Add these new styles to your existing CSS */
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.hamburger-menu {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.mobile-menu-content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80%;
+    max-width: 300px;
+    height: 100%;
+    background-color: white;
+    overflow-y: auto;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.mobile-menu.active {
+    display: block;
+}
+
+.mobile-menu.active .mobile-menu-content {
+    transform: translateX(0);
+}
+
+@media (max-width: 768px) {
+    .hamburger-menu {
+        display: block;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    header {
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 0.5rem;
+    }
+
+    .header-right {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        margin-top: 0.5rem;
+    }
+
+    .search-base-container {
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+
+    #languageSelector {
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+
+    .content {
+        flex-direction: column;
+    }
+
+    .main-content {
+        width: 100%;
+    }
+}
     </style>
 </head>
   <body>
       <div class="base-container">
         <header>
-            <h1 class="header-item" id="mainTitle">ZUZZUU Help Docs</h1>
-            <div class="search-base-container header-item">
-                <input type="text" id="searchInput" placeholder="Search...">
-                <button id="searchButton">Search</button>
+            <div class="header-left">
+                <button id="menuToggle" class="hamburger-menu">☰</button>
+                <h1 class="header-item" id="mainTitle">ZUZZUU Help Docs</h1>
             </div>
-            <select id="languageSelector" class="header-item">
-                <option value="en">English</option>
-                <option value="tr">Türkçe</option>
-            </select>
+            <div class="header-right">
+                <div class="search-base-container header-item">
+                    <input type="text" id="searchInput" placeholder="Search...">
+                    <button id="searchButton">Search</button>
+                </div>
+                <select id="languageSelector" class="header-item" style="color:#333 !important">
+                    <option value="en">English</option>
+                    <option value="tr">Türkçe</option>
+                </select>
+            </div>
         </header>
+        <!-- Add a mobile menu overlay -->
+<div id="mobileMenu" class="mobile-menu">
+    <div class="mobile-menu-content">
+        <div id="mobileSidebar"></div>
+    </div>
+</div>
         <div class="content">
             <div class="sidebar" id="fileList">
                 <!-- File list will be populated here -->
@@ -344,7 +451,8 @@
     </div>
       <script>
         const API_BASE_URL = ''; // Empty string for same-origin requests
-        //const API_BASE_URL = window.location.origin:5000;
+        //const API_BASE_URL = 'http://localhost:5000'; // Empty string for same-origin requests
+        //const API_BASE_URL = window.location.origin;
         let currentLanguage = localStorage.getItem('selectedLanguage') || 'en';
         let allFiles = [];
         let selectedFile = null;
@@ -632,6 +740,68 @@ function searchFiles() {
     updateLanguage();
     fetchFiles();
 });
+      // Add this to your existing JavaScript
+function initializeMobileMenu() {
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileSidebar = document.getElementById('mobileSidebar');
+    const sidebar = document.getElementById('fileList');
+
+    // Clone sidebar content for mobile menu
+    function updateMobileSidebar() {
+        mobileSidebar.innerHTML = sidebar.innerHTML;
+        // Reattach event listeners to cloned elements
+        mobileSidebar.querySelectorAll('.file-item').forEach(item => {
+            const originalItem = Array.from(sidebar.querySelectorAll('.file-item'))
+                .find(original => original.textContent === item.textContent);
+            if (originalItem) {
+                item.onclick = originalItem.onclick;
+            }
+        });
+    }
+
+    menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('active');
+        updateMobileSidebar();
+    });
+
+    // Close menu when clicking outside
+    mobileMenu.addEventListener('click', (e) => {
+        if (e.target === mobileMenu) {
+            mobileMenu.classList.remove('active');
+        }
+    });
+
+    // Update mobile sidebar when content changes
+    const observer = new MutationObserver(() => {
+        if (mobileMenu.classList.contains('active')) {
+            updateMobileSidebar();
+        }
+    });
+
+    observer.observe(sidebar, { childList: true, subtree: true });
+}
+
+// Add this to your DOMContentLoaded event listener
+document.addEventListener('DOMContentLoaded', function() {
+    // ... your existing code ...
+    initializeMobileMenu();
+});
+
+// Update selectFile function to close mobile menu after selection
+function selectFile(filepath, fileItem) {
+    const previouslySelected = document.querySelector('.file-item.selected');
+    if (previouslySelected) {
+        previouslySelected.classList.remove('selected');
+    }
+    fileItem.classList.add('selected');
+    selectedFile = filepath;
+    loadFileContent(filepath);
+    
+    // Close mobile menu after selection
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenu.classList.remove('active');
+}
       </script>
   </body>
 </html>
