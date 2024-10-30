@@ -999,7 +999,139 @@
           attributeFilter: ["class"],
         });
       }
-       
+      
+      function checkLoginStatus() {
+    const authToken = sessionStorage.getItem('authToken');
+    if (!authToken) {
+        showLoginOverlay();
+    } else {
+        // Verify token with backend if needed
+        hideLoginOverlay();
+    }
+}
+
+function showLoginOverlay() {
+    const loginOverlay = document.getElementById('loginOverlay');
+    if (loginOverlay) {
+        loginOverlay.style.display = 'flex';
+    }
+}
+
+function hideLoginOverlay() {
+    const loginOverlay = document.getElementById('loginOverlay');
+    if (loginOverlay) {
+        loginOverlay.style.display = 'none';
+    }
+}
+
+function showLoginError(message) {
+    const errorDiv = document.getElementById('loginError');
+    if (errorDiv) {
+        errorDiv.textContent = message;
+        errorDiv.style.display = 'block';
+    }
+}
+
+function hideLoginError() {
+    const errorDiv = document.getElementById('loginError');
+    if (errorDiv) {
+        errorDiv.style.display = 'none';
+    }
+}
+
+async function handleLogin(event) {
+    event.preventDefault();
+    
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    
+    try {
+        const response = await fetch(`${API_BASE_URL}/api/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username,
+                password
+            })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.token) {
+            // Store auth token
+            sessionStorage.setItem('authToken', data.token);
+            
+            // Hide login overlay
+            hideLoginOverlay();
+            hideLoginError();
+            
+            // Reset form
+            document.getElementById('loginForm').reset();
+            
+            // Initialize the application
+            updateLanguage();
+            fetchFiles();
+        } else {
+            showLoginError(data.message || 'Invalid username or password');
+        }
+    } catch (error) {
+        console.error('Login error:', error);
+        showLoginError('An error occurred during login. Please try again.');
+    }
+    
+    return false;
+}
+
+// Store the original fetch function
+const originalFetch = window.fetch;
+
+// Override the global fetch with our interceptor
+window.fetch = function(...args) {
+    // Get the auth token from sessionStorage
+    const authToken = sessionStorage.getItem('authToken');
+    
+    // If we have a token and there are arguments
+    if (authToken) {
+        // Get the request URL and options
+        const [url, options = {}] = args;
+        
+        // Create a new options object with the existing options
+        const newOptions = {
+            ...options,
+            // Merge existing headers with our auth header
+            headers: {
+                ...options.headers,
+                'Authorization': `Bearer ${authToken}`
+            }
+        };
+        
+        // Update the args array with our new options
+        args[1] = newOptions;
+    }
+    
+    // Call the original fetch with our modified arguments
+    return originalFetch.apply(this, args);
+};
+
+// Add logout function if needed
+function logout() {
+    sessionStorage.removeItem('authToken');
+    showLoginOverlay();
+    // Clear any sensitive data
+    allFiles = [];
+    selectedFile = null;
+    const contentDiv = document.getElementById('fileContent');
+    if (contentDiv) {
+        contentDiv.innerHTML = '';
+    }
+    const fileList = document.getElementById('fileList');
+    if (fileList) {
+        fileList.innerHTML = '';
+    }
+}
+
       document.addEventListener("DOMContentLoaded", function () { 
       // First check login status
        checkLoginStatus();
