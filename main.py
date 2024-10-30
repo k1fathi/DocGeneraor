@@ -15,8 +15,9 @@ from flask_cors import CORS
 import logging
 from datetime import datetime
 from pathlib import Path
-
-
+from flask_jwt_extended import JWTManager, create_access_token, get_jwt_identity, jwt_required
+from datetime import timedelta
+import hashlib
 
 load_dotenv()
 app = Flask(__name__, static_folder='public', static_url_path='')
@@ -27,7 +28,41 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 CORS(app)
+#
+# Add these after your existing imports
+app.config['JWT_SECRET_KEY'] = 'm$9@T3^%m7Q6$y7Y%74!Y9@H*3T+N!5'  # Change this to a secure secret key
+app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=1)  # Set token expiration to 1 day
+jwt = JWTManager(app)
 
+# Admin credentials (in production, use a secure database)
+ADMIN_USERNAME = "admin"
+# Store password hash instead of plain text
+ADMIN_PASSWORD_HASH = hashlib.sha256("zUzZuUd@cs".encode()).hexdigest()
+
+@app.route('/api/login', methods=['POST'])
+def login():
+    try:
+        data = request.get_json()
+        username = data.get('username')
+        password = data.get('password')
+
+        if not username or not password:
+            return jsonify({"error": "Missing username or password"}), 400
+
+        # Check credentials
+        if username == ADMIN_USERNAME and hashlib.sha256(password.encode()).hexdigest() == ADMIN_PASSWORD_HASH:
+            # Create access token
+            access_token = create_access_token(identity=username)
+            return jsonify({
+                "token": access_token,
+                "message": "Login successful"
+            }), 200
+        else:
+            return jsonify({"error": "Invalid credentials"}), 401
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    
 @app.route('/')
 def serve_index():
     return send_from_directory(app.static_folder, 'index.html')
@@ -230,34 +265,6 @@ def search_html_files(directory, search_term):
                         results.append(file_path)
     return results
 
-def get_files_for_language1(language):
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    resource_dir = os.path.join(current_dir, 'resource', language)
-    
-    files = []
-    try:
-        # Walk through all subdirectories
-        for root, _, filenames in os.walk(resource_dir):
-            for filename in filenames:
-                if filename.endswith('.html'):
-                    file_path = os.path.join(root, filename)
-                    # Get relative path from the language directory
-                    relative_path = os.path.relpath(file_path, resource_dir)
-                    created_timestamp = os.path.getctime(file_path)
-                    created_date = datetime.fromtimestamp(created_timestamp).strftime('%Y-%m-%d %H:%M:%S')
-                    
-                    files.append({
-                        'name': filename,
-                        'path': relative_path.replace('\\', '/'),  # Ensure forward slashes for consistency
-                        'createdDate': created_date,
-                        'folder': os.path.dirname(relative_path).replace('\\', '/')  # Add folder path
-                    })
-    except Exception as e:
-        print(f"Error reading directory: {str(e)}")
-        return []
-
-    return files
-
 def get_files_for_language(language):
     try:
         # Use Path for better cross-platform compatibility
@@ -324,6 +331,7 @@ def debug_directory_structure(language):
         logger.error(f"Error debugging directory structure: {str(e)}")
 
 @app.route('/api/files', methods=['GET'])
+@jwt_required()
 def api_get_files():
     language = request.args.get('lang', 'en').lower()  # Default to English if no language specified
     if language not in ['en', 'tr']:
@@ -333,6 +341,7 @@ def api_get_files():
     return jsonify(files)
 
 @app.route('/api/file/<path:filepath>', methods=['GET'])
+@jwt_required()
 def get_file_content(filepath):
     language = request.args.get('lang', 'en').lower()
     if language not in ['en', 'tr']:
@@ -357,6 +366,7 @@ def get_file_content(filepath):
         return jsonify({"error": str(e)}), 500
 
 @app.route('/api/search', methods=['GET'])
+@jwt_required()
 def search_endpoint():
     search_term = request.args.get('q')
     language = request.args.get('lang', 'en').lower()  # Default to English if not specified
@@ -449,6 +459,28 @@ def get_text_snippet(content, search_term, context_length=100):
 # Helper function to check if a file path is within the resource directory
 def is_valid_file_path(file_path, resource_path):
     return os.path.abspath(file_path).startswith(os.path.abspath(resource_path))
+
+# Error handlers for JWT
+@jwt.unauthorized_loader
+def unauthorized_callback(callback):
+    return jsonify({
+        'error': 'Unauthorized access',
+        'message': 'Missing or invalid token'
+    }), 401
+
+@jwt.expired_token_loader
+def expired_token_callback(jwt_header, jwt_data):
+    return jsonify({
+        'error': 'Token has expired',
+        'message': 'Please log in again'
+    }), 401
+
+@jwt.invalid_token_loader
+def invalid_token_callback(error_string):
+    return jsonify({
+        'error': 'Invalid token',
+        'message': 'Please log in again'
+    }), 401
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
